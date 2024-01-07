@@ -1,0 +1,27 @@
+.about-page{
+
+}
+.about-page h1{
+    font-size: 4rem;
+}
+.about-page h2{
+    font-size: 2rem;
+}
+.about-page p{
+    font-size: 1.4rem;
+}
+.about-page .about-me{
+    max-width: 900px;
+    margin: 0 auto;
+}
+.about-page .about-project{
+    max-width: 900px;
+    margin: 0 auto;
+}
+.about-page .content-wrapper{
+    text-align: justify;
+}
+.about-page .about-img{
+    max-height: 100px;
+    object-fit: contain;
+}

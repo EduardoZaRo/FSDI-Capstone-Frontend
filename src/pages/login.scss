@@ -1,0 +1,36 @@
+.login-page{
+    flex-direction: column;
+    gap: 1rem;
+}
+
+// .form{
+//     flex-direction: column;
+//     gap: 2rem;
+// }
+// .input-group{
+//     width: 100%;
+//     gap: 1rem;
+//     border-radius: 10px;
+//     border: 1px solid var(--secondary-color-600);
+//     padding: 0 1rem;
+//     background-color: white;
+// }
+// .input-group input{
+//     flex: 1;
+//     height: 4rem;
+//     border: none;
+// }
+// button[type=submit]{
+//     width: 100%;
+//     border-radius: 10px;
+//     border:none;
+//     color: var(--neutral-color);
+//     background-color: var(--secondary-color);
+// }
+// button[type=submit]:hover{
+//     background-color: var(--secondary-color-600);
+// }
+.login-page .register-link{
+    text-decoration: none;
+    color: black;
+}

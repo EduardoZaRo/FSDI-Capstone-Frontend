@@ -1,0 +1,59 @@
+.createdevice-page{
+    width: 100%;
+    height: fit-content;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    display:flex;
+    flex-direction: column;
+}
+.createdevice-page h1{
+    text-align:center;
+}
+.createdevice-page .container{
+    width: 100%;
+    justify-content: space-around;
+}
+.createdevice-page .container .left-elements{
+    background-color: white;
+    width: 30%;
+    height: 200px;
+}
+.createdevice-page .container .right-elements{
+    background-color: white;
+    width: 30%;
+    height: 200px;
+}
+#generate-code{
+    text-align:center;
+}
+.createdevice-page .code{
+    width: 100%;
+    height: fit-content;
+    white-space: pre-wrap;
+    background: whitesmoke;
+}
+.createdevice-page .add-container{
+    width :100%;
+    justify-content:center;
+    align-items:center;
+}
+
+
+.createdevice-page .selected-elements div:last-child{
+    animation: displayPulse 0.4s linear;
+    animation-iteration-count: 1;
+}
+@keyframes displayPulse{
+    0%{
+        transform: scale(1.02);
+    }
+    20%{
+        transform: scale(1);
+    }
+    35%{
+        transform: scale(1.02);
+    }
+    100%{
+        transform: scale(1);
+    }
+}

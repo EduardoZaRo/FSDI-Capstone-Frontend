@@ -1,0 +1,27 @@
+.footercomponent{
+    background-color: var(--background-color);
+    width: 100%;
+    height: 100px;
+    justify-content: space-around;
+}
+
+.footercomponent,
+.footercomponent a,
+.footercomponent .nav-footer a{
+    text-decoration: none;
+    color: white;
+}
+.footercomponent a,
+.footercomponent .nav-footer{
+    gap: 2rem;
+    font-size: 1.3rem;
+}
+.footercomponent a{
+    overflow: hidden;
+    max-width: 15ch;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.footercomponent .logged-user{
+    gap: 5px;
+}

@@ -1,0 +1,9 @@
+.register-page{
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.register-page .captcha-input{
+    border-radius: 10px;
+    padding: 10px;
+}

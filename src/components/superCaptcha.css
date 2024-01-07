@@ -1,0 +1,7 @@
+.supercaptcha-component{
+    gap: 1rem;
+}
+.supercaptcha-component .captcha-input{
+    border-radius: 10px;
+    padding: 10px;
+}

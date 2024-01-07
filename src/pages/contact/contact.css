@@ -1,0 +1,16 @@
+.contact-page{
+    justify-content: space-between;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    gap: 1rem;
+}
+.contact-info{
+    font-size: 1.4rem;
+    width: 80%;
+    max-width: 600px;
+    text-align:center;
+}
+.contact-info h2{
+    font-size: 3rem;
+}

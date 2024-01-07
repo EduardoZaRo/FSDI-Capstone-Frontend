@@ -1,0 +1,103 @@
+@media(max-width: 640px){
+    html{
+        font-size: 10px;
+    }
+    .navbarcomponent .nav-btn{
+        display: block!important;
+    }
+    .navbarcomponent .navbar-links{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 998;
+
+        width: 100vw;
+        height: 0;
+        background: var(--surface-color);
+        opacity: 0.95;
+
+        color: white;
+        margin: auto 0;
+        gap: 40px;
+        color: white;
+        font-size: 3rem;
+
+        overflow:hidden;
+        font-size: 3rem!important;
+    }
+    .navbarcomponent .nav-btn{
+        display: inline-block;
+        margin: 10px;
+    }
+    .navbarcomponent label{
+        margin: 10px;
+    }
+    .navbarcomponent #nav-check.clicked:not(:checked)~.navbar-links{
+        height: 0px;
+        width: 100vw;
+        overflow: hidden;
+        animation: toTopSlide 0.5s;
+    }
+
+    .navbarcomponent #nav-check:checked~.navbar-links{
+        height: 100vh;
+        overflow: hidden;
+        animation: toBottomSlide 0.5s;
+    }
+    .navbarcomponent #nav-check:checked + .nav-btn span:first-child{
+        transform: rotate(45deg);
+        margin: 0;
+        margin-bottom: -2px;
+        transition: 0.5s;
+    }
+    .navbarcomponent #nav-check:checked + .nav-btn span:last-child{
+        transform: rotate(-45deg);
+        margin: 0;
+        transition: 0.5s;
+    }
+    .navbarcomponent #nav-check:checked + .nav-btn span:nth-child(2){
+        height: 0;
+        margin: 0;
+        transition: 0.1s;
+    }
+
+    .footercomponent{
+        flex-direction: column;
+    }
+    .footercomponent a,
+    .footercomponent .nav-footer a
+    {
+        font-size: 1.2rem;
+    }
+}
+@media(max-width:1007px){ 
+    html{
+        font-size: 12px;
+    }
+    .navbarcomponent h1{
+        font-size: 2.5rem;
+    }
+    .navbarcomponent .navbar-links{
+        font-size: 1.2rem;
+    }
+}
+@keyframes toBottomSlide{
+    0%{
+        height: 0;
+    }
+    100%{
+        height: 100vh;
+    }
+}
+@keyframes toTopSlide{
+    0%{
+        height: 100vh;
+    }
+    100%{
+        height: 0;
+    }
+}

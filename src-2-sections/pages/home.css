@@ -1,0 +1,36 @@
+.home{
+    background-color: pink;
+    width: 100%;
+    height: fit-content;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    display:flex;
+    flex-direction: column;
+}
+.home h1{
+    text-align:center;
+}
+.home .container{
+    width: 100%;
+    justify-content: space-around;
+}
+
+.home .container .left-elements{
+    background-color: white;
+    width: 30%;
+    height: 200px;
+}
+.home .container .right-elements{
+    background-color: white;
+    width: 30%;
+    height: 200px;
+}
+.home #generate-code{
+    text-align:center;
+}
+.home .code{
+    width: 100%;
+    height: fit-content;
+    white-space: pre-wrap;
+    background: whitesmoke;
+}

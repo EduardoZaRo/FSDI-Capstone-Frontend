@@ -1,0 +1,43 @@
+.navbarcomponent{
+    background: var(--surface-color);
+    height: 60px;
+    position: sticky;
+    z-index: 9999;
+    top: 0;
+    justify-content:space-between;
+}
+.navbarcomponent > *{
+    height: 100%;
+    display:flex;
+    align-items:center;
+    padding: 0 10px;
+    color: var(--neutral-color);
+}
+.navbarcomponent .navbar-links{
+    gap: 2rem;
+    color: var(--neutral-color);
+    font-size: 1.4rem;
+}
+.navbarcomponent .nav-btn span{
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: var(--neutral-color);
+    margin: 6px auto;
+    transition: 0.5s;
+}
+.navbarcomponent  #nav-check, .nav-btn{
+    display: none;
+}
+.navbarcomponent .nav-btn{
+    position: relative;
+    z-index: 999;
+}
+.navbarcomponent h1{
+    text-wrap: nowrap;
+}
+.navbarcomponent a{
+    text-decoration: none;
+    color: var(--neutral-color);
+}
+
