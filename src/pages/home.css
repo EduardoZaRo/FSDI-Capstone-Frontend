@@ -1,0 +1,39 @@
+.section-text-container{
+    padding: 1rem;
+}
+.section-text-container h2{
+    font-size: 4rem;
+}
+.section-text-container p{
+    font-size: 1.6rem;
+    text-align: justify;
+}
+
+.slide-to-left{
+    position: relative;
+    left: 200%;
+    animation: slideToLeft 1s ease;
+    animation-fill-mode: forwards;
+}
+.slide-to-right{
+    position: relative;
+    right: 200%;
+    animation: slideToRight 1s ease;
+    animation-fill-mode: forwards;
+}
+@keyframes slideToLeft{
+    0{
+        left: 200%;
+    }
+    100%{
+        left: 0;
+    }
+}
+@keyframes slideToRight{
+    0{
+        right: 200%;
+    }
+    100%{
+        right: 0;
+    }
+}

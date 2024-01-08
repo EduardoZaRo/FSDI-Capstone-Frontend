@@ -19,7 +19,7 @@ function Footer() {
             {
             auth.user ? 
                 <div className="logged-user flex center">
-                    <i class="bi bi-person-check"></i>
+                    <i className="bi bi-person-check"></i>
                     <a>{auth.user.email}</a>
                 </div> 
             : 

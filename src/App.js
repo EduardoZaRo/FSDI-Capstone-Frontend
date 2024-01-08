@@ -1,7 +1,7 @@
 import './App.css';
 import './base.css';
 
-import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
+import {BrowserRouter, Routes, Route, Navigate, useLocation} from "react-router-dom";
 import Navbar from './components/navbar';
 import Footer from './components/footer';
 import Home from './pages/home';
@@ -21,7 +21,7 @@ import Contact from './pages/contact/contact';
 import './responsive.css';
 import { useEffect, useState,useContext } from "react";
 
-// import "tw-elements-react/dist/css/tw-elements-react.min.css";
+import "tw-elements-react/dist/css/tw-elements-react.min.css";
 import { useAuthContext} from "./state/authContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
@@ -32,6 +32,7 @@ function App() {
   const [userProfile, setUserProfile] = useState({});
   const auth = useAuthContext();
   useEffect(()=>{
+    console.log(window)
     auth.isAuthenticated().then(()=>{
       setLoggedIn(true);
       auth.getAuthenticatedUser();
@@ -41,7 +42,7 @@ function App() {
   }, []);
   const PrivateRoute = ({ children }) => {
     const auth = useAuthContext();
-    console.log("private route", auth.user)
+    console.log("private route", auth.user, children)
     return (
       auth.user ? children : <Navigate to="/login" state={{isRedirected: true}}/>
     )

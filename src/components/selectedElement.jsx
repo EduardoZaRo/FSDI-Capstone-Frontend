@@ -9,7 +9,7 @@ import DataService from "../services/dataService";
 
 function SelectedElement(props) {
   return (
-    <div className={"selectedElectronic bg-blue-300 rounded flex justify-between w-4/6 m-auto text-white p-3"}>
+    <div className={"selectedElectronic bg-blue-300 rounded flex justify-between w-full m-auto text-white p-3"}>
         <p className="flex items-center text-black">{props.data.title} {props.data.name} - {props.data._id}</p>
         <button className="bg-red-500 px-2 rounded" onClick={()=>props.removeElectronicComponent(props.selectedIndex)}>Delete</button>
     </div>

@@ -15,7 +15,6 @@ function Login(props) {
     const [loading, setLoading] = useState(false);
     const auth = useAuthContext();
     const {state} = useLocation();
-
     function verifyForm(){
         if(password === ""){
             setFormError("Please enter a password");
@@ -38,7 +37,7 @@ function Login(props) {
             }).then(()=>{
                 props.setLoggedIn(false);
                 setLoading(false);
-                return (<Link to="home"/>);
+                return (<Link to="/"/>);
                 
             }).catch(()=>{
                 setLoading(false);
@@ -103,7 +102,7 @@ function Login(props) {
                 <button type="submit" className="" onClick={verifyForm}>
                 Login <i className="bi bi-box-arrow-in-right"></i>
                 </button>
-                <Link to="/register" className="register-link"><h3>Don't have an account yet? Sign up <i class="bi bi-box-arrow-up-right"></i></h3></Link>
+                <Link to="/register" className="register-link"><h3>Don't have an account yet? Sign up <i className="bi bi-box-arrow-up-right"></i></h3></Link>
             </div>
         </div>
         :
