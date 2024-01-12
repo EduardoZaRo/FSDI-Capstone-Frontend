@@ -1,12 +1,12 @@
 import "./createDevice.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useContext } from "react";
 import DataService from "../../services/dataService";
 import {Link} from "react-router-dom";
 import AddDeviceStepper from "./components/addDeviceStepper";
-
+import { useAuthContext } from "../../state/authContext";
 import SelectElementSection from "./components/selectElementSection";
-
+import ShowGeneratedCode from "./components/showGeneratedCode";
 function CreateDevice(props) {
   const [stepperPage, setStepperPage] = useState(0);
   const [code, setCode] = useState('');
@@ -14,16 +14,20 @@ function CreateDevice(props) {
   const [selectedMicrocontroller, setSelectedMicrocontroller] = useState([]);
   const [peripherals, setPeripherals] = useState([]);
   const [selectedPeripherals, setSelectedPeripherals] = useState([]);
+  const auth = useAuthContext();
+
   useEffect(
     function () {
       loadPeripherals();
       loadMicrocontrollers();
+
       if(stepperPage === 2){
-        console.log("Created device: ", selectedMicrocontroller, selectedPeripherals)
+        console.log("Created device: ", selectedMicrocontroller, selectedPeripherals)        
       }
     },
     [stepperPage, peripherals, selectedPeripherals,microcontrollers,selectedMicrocontroller]
   );
+
   function loadMicrocontrollers(){
     const service = new DataService();
     let data = service.getMicrocontrollers();
@@ -73,6 +77,17 @@ function CreateDevice(props) {
     })
     return elementToAdd;
   }
+  function xd(){
+    auth.getNewDeviceCode({
+      'microcontroller': selectedMicrocontroller[0],
+      'peripherals': selectedPeripherals
+    }).then((response)=>{
+        console.log(response)
+    }).catch((error)=>{
+        console.log(error)
+    })
+  }
+
   function copyCodeToClipboard(){
     let txtCode = document.getElementById("copy-text-code");
     console.log(txtCode.innerHTML)
@@ -106,46 +121,7 @@ function CreateDevice(props) {
         : false}
       
 `      {stepperPage == 2 ? 
-      <div className="step-2 w-full">
-        <h2 className="text-center">Ready! You only need to follow the next steps to finish</h2>
-        <ol class="flex-column m-auto w-full space-y-1 list-decimal list-inside flex-column gap-5">
-          <li>Create a new Arduino Sketch</li>
-          <li>Copy and paste this code in your file:</li>
-
-          <div className="code" id="copy-text-code">
-          <button
-            id="copy-btn"
-            onClick={copyCodeToClipboard}
-            class="inline-block w-fit p-2 rounded bg-primary flex justify-center text-white">
-              <i className="bi bi-copy"></i>
-          </button>
-            <p>
-              {code}
-            </p>
-
-          </div>
-          <li>Check if you have all the needed libraries</li>
-          <div className="code">
-            //All the need libraries
-
-            If you miss someone, install it via:
-          </div>
-          <ul class="flex-column m-auto w-4/6 space-y-1 list-decimal list-inside">
-            <li>Sketch > Include Library > Manage Libraries</li>
-            <img src="manage-libraries.png" alt="" />
-            <p>This step can take a while</p>
-            <li>Search the library and install it</li>
-            <img src="search-library.png" alt="" />
-          </ul>
-          <li>Select your board in ardino</li>
-          <ul class="flex-column m-auto w-4/6 space-y-1 list-decimal list-inside">
-            <li>Tools > Board > Board family > Specific board</li>
-            <img src="select-board.png" alt="" />
-            <p>Make sure your COM port is recognized by arduino</p>
-            <img src="check-com.png" alt="" />
-          </ul>
-        </ol>
-      </div>
+      <ShowGeneratedCode selectedMicrocontroller={selectedMicrocontroller} selectedPeripherals={selectedPeripherals}/>
       : false}
       {stepperPage == 3 ? 
       <div className="step-3">
@@ -165,8 +141,29 @@ function CreateDevice(props) {
             }>{stepperPage == 3 ? <Link to="/dashboard">Finish</Link>: "Next"} </button>
           </div>
         </div>
+        <button onClick={xd}>XD</button>
       </div>
+      
   );
 }
 
 export default CreateDevice;
+
+
+// Sample device 
+// {
+//   "microcontroller": {
+//       "name": "ESP32",
+//       "availablePins": 32,
+//       "infoLink": "https://www.espressif.com/sites/default/files/documentation/esp32_technical_reference_manual_en.pdf",
+//       "_id": "1"
+//   },
+//   "peripherals": [{
+//       "title": "LED",
+//       "type": "INPUT",
+//       "position": "left",
+//       "icon": "lightbulb",
+//       "neededPins": 1,
+//       "_id": "1"
+//   }]
+// }

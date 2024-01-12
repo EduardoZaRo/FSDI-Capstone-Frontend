@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 import SelectedElement from "../../../components/selectedElement"
 
 function SelectElementSection(props) {
+    const [showItems, setShowItems] = useState(false);
+
+    const toggleShowItems = () => setShowItems(!showItems);
     useEffect(()=>{
         console.log("selecsection",props)
     }, [props.selectedElements])
@@ -29,13 +32,13 @@ function SelectElementSection(props) {
                 <button
                     type="button"
                     className="center big-circle-add-btn"
-                    onClick={props.toggleShow}
+                    onClick={toggleShowItems}
                 >
                     +
                 </button>
                 </TERipple>
 
-                <TECollapse scroll show={props.show} className="no-scrollbar max-w-full max-h-full w-[600px]">
+                <TECollapse scroll show={showItems} className="no-scrollbar max-w-full max-h-full w-[600px]">
 
                     <div className="block rounded-lg bg-white p-6 shadow-lg dark:bg-neutral-700 dark:text-neutral-50 h-fit-content w-100 divide-y" >
 

@@ -6,6 +6,9 @@ import Navbar from './components/navbar';
 import Footer from './components/footer';
 import Home from './pages/home';
 import CreateDevice from './pages/createDevice/createDevice';
+import StepOne from './pages/createDevice/stepOne';
+import StepTwo from './pages/createDevice/stepTwo';
+import StepThree from './pages/createDevice/stepThree';
 import Dashboard from './pages/dashboard';
 import DeviceView from './pages/deviceView';
 import Login from "./pages/login";
@@ -66,6 +69,9 @@ function App() {
 
             {/* Private routes (need auth) */}
             <Route path="/create-device" element={<PrivateRoute><CreateDevice/></PrivateRoute>}/>
+            <Route path="/step-one" element={<PrivateRoute><StepOne/></PrivateRoute>}/>
+            <Route path="/step-two" element={<PrivateRoute><StepTwo/></PrivateRoute>}/>
+            <Route path="/step-three" element={<PrivateRoute><StepThree/></PrivateRoute>}/>
             <Route path="/dashboard" element={<PrivateRoute><Dashboard/></PrivateRoute>}/>
             <Route path="/logout" element={<PrivateRoute><Logout setLoggedIn={setLoggedIn}/></PrivateRoute>}/>
             <Route path="/change-password" element={<PrivateRoute><ChangePassword/></PrivateRoute>}/>

@@ -15,7 +15,8 @@ function Navbar(props) {
         { link: "/reset-password", text: "Reset password" },
     ];
     const authenticatedLinks = [
-        { link: "/create-device", text: "New device" },
+        // { link: "/create-device", text: "New device" },
+        { link: "/step-one", text: "New device" },
         { link: "/dashboard", text: "Dashboard" },
         { link: "/change-password", text: "Change password" },
         { link: "/logout", text: "Logout" },

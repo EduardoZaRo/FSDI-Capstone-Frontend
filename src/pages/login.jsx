@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import StoreContext from "../state/authContext";
-import {BrowserRouter, Routes, Route, Navigate, useLocation} from "react-router-dom";
+import {BrowserRouter, Routes, Route, Navigate, useLocation, useNavigate} from "react-router-dom";
 import { useAuthContext } from "../state/authContext";
 import LoginImage from '../assets/img/select-board.png';
 import LoadingScreen from '../components/loadingScreen';
@@ -15,6 +15,7 @@ function Login(props) {
     const [loading, setLoading] = useState(false);
     const auth = useAuthContext();
     const {state} = useLocation();
+    const navigate = useNavigate();
     function verifyForm(){
         if(password === ""){
             setFormError("Please enter a password");
@@ -37,7 +38,8 @@ function Login(props) {
             }).then(()=>{
                 props.setLoggedIn(false);
                 setLoading(false);
-                return (<Link to="/"/>);
+                // return (<Link to="/"/>);
+                navigate("/");
                 
             }).catch(()=>{
                 setLoading(false);

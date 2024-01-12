@@ -70,6 +70,11 @@ function useAuth(){
         await getCSRFToken();
         let apiResponse = await axios.post("/change-password/", data);
     }
-    return {user, csrftoken, getCSRFToken, login, logout, isAuthenticated, getAuthenticatedUser, signup, resetPassword, resetPasswordConfirm, changePassword}
+
+    function getNewDeviceCode(data){
+        console.log("get code for device")
+        return axios.post("/generate-code/", data)
+    }
+    return {user, csrftoken, getCSRFToken, login, logout, isAuthenticated, getAuthenticatedUser, signup, resetPassword, resetPasswordConfirm, changePassword, getNewDeviceCode}
 }
 export default useAuth;
