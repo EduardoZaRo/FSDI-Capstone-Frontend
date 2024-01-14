@@ -13,7 +13,12 @@ const authContext = createContext({
     resetPassword: async () => {},
     resetPasswordConfirm: async () => {}, 
     changePassword: async () => {},
-    getNewDeviceCode: async () => {},
+    getNewDeviceCode: () => {},
+    getAllPeripherals:  () => {},
+    getAllMicrocontrollers: () => {},
+    saveDevice: () => {},
+    getUserDevices: () => {},
+    getAllDevices: () => {},
 });
 const useAuthContext = () => useContext(authContext);
 function AuthProvider(props){

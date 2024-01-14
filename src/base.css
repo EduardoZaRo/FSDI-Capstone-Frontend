@@ -134,7 +134,14 @@ i.bi{
     background:lightgray;
     border-radius: 10px;
 }
-
+code.language-arduino.hljs{
+    background: whitesmoke;
+}
+code.language-arduino.hljs,
+code.language-arduino.hljs span {
+    font-size: 1.2rem;
+    font-family: var(--code-font)!important;
+}
 .form{
     flex-direction: column;
     gap: 2rem;
@@ -165,4 +172,11 @@ button[type=submit]{
 }
 button[type=submit]:hover{
     background-color: var(--secondary-color-600);
+}
+.loading-animation-container{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vh;
+    height: 100vw;
 }

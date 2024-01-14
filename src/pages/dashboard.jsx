@@ -2,22 +2,22 @@ import "./dashboard.scss";
 import DataService from "../services/dataService";
 import {useEffect, useState} from "react";
 import DeviceCard from "../components/deviceCard";
+import { useAuthContext } from "../state/authContext";
 function Dashboard(props) {
-    const [userData, setUserData] = useState({});
+    const [devices, setDevices] = useState([]);
+    const auth = useAuthContext();
     useEffect(function () {
-        loadUserData();
-        console.log(userData.devices)
-    },[userData]);  
-    function loadUserData(){
-        let service = new DataService();
-        let data = service.getUserData();
-        setUserData(data);
-    }
+        auth.getUserDevices().then((response)=>{
+            setDevices(response.data)
+            console.log(response.data)
+        }).catch((error)=>{
+        })
+    },[]);  
     return (
         <div className="page dashboard-page flex-column">
             {   
-                userData.devices &&
-                userData.devices.map(d =>  <DeviceCard data={d}/>)
+                devices.length &&
+                devices.map(d =>  <DeviceCard key={d.microcontroller.name} data={d}/>)
             }
         </div>
     );

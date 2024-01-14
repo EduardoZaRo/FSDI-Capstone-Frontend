@@ -7,15 +7,21 @@ import AddDeviceStepper from "./components/addDeviceStepper";
 import { useAuthContext } from "../../state/authContext";
 import SelectElementSection from "./components/selectElementSection";
 import ShowGeneratedCode from "./components/showGeneratedCode";
+import { useLocation } from "react-router-dom";
 function StepOne(props) {
   const [microcontrollers, setMicrocontrollers] = useState([]);
   const [selectedMicrocontroller, setSelectedMicrocontroller] = useState([]);
-
+  const [selectedPeripherals, setSelectedPeripherals] = useState([]);
   const auth = useAuthContext();
-
+  const location = useLocation();
   useEffect(
     function () {
       loadMicrocontrollers();
+      console.log(location)
+      if(location.state){
+        setSelectedMicrocontroller(location.state.microcontroller);
+        setSelectedPeripherals(location.state.peripherals);
+      }
     },
     []
   );
@@ -56,9 +62,9 @@ function StepOne(props) {
                   
 
 
-        <div className="stepper-navigation-btns flex">
+         <div className="stepper-navigation-btns flex">
           <button className="generate-code-button flex bg-secondary w-1/6 rounded  m-auto text-white text-center justify-center m-auto disabled:opacity-50 py-2" disabled={true}>Prev</button>
-          <button className="generate-code-button flex bg-secondary w-1/6 rounded  m-auto text-white text-center justify-center m-auto disabled:opacity-50 py-2" disabled={selectedMicrocontroller.length == 0 ? true : false}> <Link to="/step-two" state={{microcontroller: selectedMicrocontroller[0]}}className="text-white">Next</Link> </button>
+          <button className="generate-code-button flex bg-secondary w-1/6 rounded  m-auto text-white text-center justify-center m-auto disabled:opacity-50 py-2" disabled={selectedMicrocontroller.length == 0 ? true : false}> <Link to="/step-two" state={{microcontroller: selectedMicrocontroller, peripherals: selectedPeripherals}}className="text-white">Next</Link> </button>
         </div>
       </div>
     </div>

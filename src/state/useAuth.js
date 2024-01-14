@@ -71,10 +71,28 @@ function useAuth(){
         let apiResponse = await axios.post("/change-password/", data);
     }
 
+
+
+
     function getNewDeviceCode(data){
         console.log("get code for device")
         return axios.post("/generate-code/", data)
     }
-    return {user, csrftoken, getCSRFToken, login, logout, isAuthenticated, getAuthenticatedUser, signup, resetPassword, resetPasswordConfirm, changePassword, getNewDeviceCode}
+    function getAllMicrocontrollers(){
+        return axios.get("/get-microcontrollers/")
+    }
+    function getAllPeripherals(){
+        return axios.get("/get-peripherals/")
+    }
+    function getAllDevices(){
+        return axios.post("/get-peripherals/")
+    }
+    function saveDevice(data){
+        return axios.post("/save-device/", data)
+    }
+    function getUserDevices(){
+        return axios.get("/get-user-devices/")
+    }
+    return {user, csrftoken, getCSRFToken, login, logout, isAuthenticated, getAuthenticatedUser, signup, resetPassword, resetPasswordConfirm, changePassword, getNewDeviceCode, getAllMicrocontrollers, getAllPeripherals, saveDevice, getUserDevices, getAllDevices}
 }
 export default useAuth;

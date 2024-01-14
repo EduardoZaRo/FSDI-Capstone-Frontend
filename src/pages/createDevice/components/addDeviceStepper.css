@@ -1,3 +1,13 @@
 .stepper-component{
     width: 100%;
 }
+.createdevice-page code{
+    top: -10px;
+}
+.createdevice-page code::-webkit-scrollbar{
+    display:none;
+}
+.createdevice-page code{
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}

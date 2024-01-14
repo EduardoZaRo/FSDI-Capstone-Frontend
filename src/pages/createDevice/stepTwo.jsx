@@ -18,7 +18,10 @@ function StepTwo(props) {
   const [selectedMicrocontroller, setSelectedMicrocontroller] = useState(location.state.microcontroller);
   useEffect(function () {
     loadPeripherals();
-    console.log(location);
+    if(location.state){
+      setSelectedMicrocontroller(location.state.microcontroller);
+      setSelectedPeripherals(location.state.peripherals);
+    }
   }, []);
 
   function loadPeripherals() {
@@ -78,7 +81,7 @@ function StepTwo(props) {
         />
 
         <div className="stepper-navigation-btns flex">
-          <button className="generate-code-button flex bg-secondary w-1/6 rounded  m-auto text-white text-center justify-center m-auto disabled:opacity-50 py-2">Prev</button>
+          <button className="generate-code-button flex bg-secondary w-1/6 rounded  m-auto text-white text-center justify-center m-auto disabled:opacity-50 py-2"><Link to="/step-one" state={{microcontroller: selectedMicrocontroller, peripherals: selectedPeripherals}}className="text-white">Prev</Link></button>
           <button className="generate-code-button flex bg-secondary w-1/6 rounded  m-auto text-white text-center justify-center m-auto disabled:opacity-50 py-2" disabled={selectedPeripherals.length == 0 ? true : false}> <Link to="/step-three" state={{microcontroller: selectedMicrocontroller, peripherals: selectedPeripherals}}className="text-white">Next</Link> </button>
         </div>
       </div>
