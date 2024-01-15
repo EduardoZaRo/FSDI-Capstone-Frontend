@@ -12,17 +12,11 @@ function Logout(props) {
     const auth = useAuthContext();
     const [loading, setLoading] = useState(true);
     useEffect(()=>{
-        auth.logout().then(()=>{setLoading(false);}).catch(()=>{setLoading(false);});
+        auth.logout()//.then(()=>{setLoading(false);}).catch(()=>{setLoading(false);});
     }, []);
-    function logout(){
-        setLoading(true);
-    }
     return (
         // loading ? <LoadingScreen/> : <Navigate to="/login" />
         <>
-            {
-                
-            }
             {loading ? <LoadingScreen/> : <Navigate to="/login" />}
         </>
 

@@ -10,6 +10,7 @@ import StepOne from './pages/createDevice/stepOne';
 import StepTwo from './pages/createDevice/stepTwo';
 import StepThree from './pages/createDevice/stepThree';
 import Dashboard from './pages/dashboard';
+import DeviceDetails from './pages/deviceDetails';
 import DeviceView from './pages/deviceView';
 import Login from "./pages/login";
 import Logout from "./pages/logout";
@@ -73,6 +74,7 @@ function App() {
             <Route path="/step-two" element={<PrivateRoute><StepTwo/></PrivateRoute>}/>
             <Route path="/step-three" element={<PrivateRoute><StepThree/></PrivateRoute>}/>
             <Route path="/dashboard" element={<PrivateRoute><Dashboard/></PrivateRoute>}/>
+            <Route path="/device-details" element={<PrivateRoute><DeviceDetails/></PrivateRoute>}/>
             <Route path="/logout" element={<PrivateRoute><Logout setLoggedIn={setLoggedIn}/></PrivateRoute>}/>
             <Route path="/change-password" element={<PrivateRoute><ChangePassword/></PrivateRoute>}/>
           </Routes>

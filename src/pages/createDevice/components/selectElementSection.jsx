@@ -12,6 +12,7 @@ function SelectElementSection(props) {
     }, [props.selectedElements])
     return (
         <div className="select-elemenet-section-component section step-0 flex-column gap-4">
+
             <h2 className="text-center">{props.title}{props.name}</h2>
             <div className="section selected-elements flex-column gap-3">
             {

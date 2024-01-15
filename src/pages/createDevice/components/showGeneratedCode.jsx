@@ -21,6 +21,7 @@ function ShowGeneratedCode(props) {
     console.log(props)
     setLoading(true);
     auth.getNewDeviceCode({
+        'name': props.deviceName,
         'microcontroller': props.selectedMicrocontroller[0],
         'peripherals': props.selectedPeripherals
     }).then((response)=>{
@@ -33,14 +34,6 @@ function ShowGeneratedCode(props) {
     }).catch((error)=>{
         console.log(error)
         setLoading(false);
-    })
-    auth.saveDevice({
-      'microcontroller': props.selectedMicrocontroller[0],
-      'peripherals': props.selectedPeripherals
-  }).then((response)=>{
-
-    }).catch((error)=>{
-
     })
   }, [props.selectedMicrocontroller.length])
   function copyCodeToClipboard(){

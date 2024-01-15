@@ -67,7 +67,7 @@ function Login(props) {
         loading? <LoadingScreen/> :
         <div className="page flex-row center login-page">
             
-            <div className="flex form login-form">
+            <div className="flex form login-form pop-up">
                 {state ? <h3 className="center text-center">You need to login to see this page</h3> : <h1 className="center text-center">Login</h1>}
                 
                 <div className="flex input-group">

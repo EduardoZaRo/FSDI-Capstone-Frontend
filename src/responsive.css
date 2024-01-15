@@ -92,6 +92,14 @@
     .navbarcomponent .navbar-links{
         font-size: 1.2rem;
     }
+    .device-card .device-peripherals{
+        flex-direction:column;
+    }
+    .device-card .device-micro .bi,
+    .device-card .device-micro
+    {
+        font-size: 1.4rem;
+    }
 }
 @keyframes toBottomSlide{
     0%{

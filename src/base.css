@@ -180,3 +180,73 @@ button[type=submit]:hover{
     width: 100vh;
     height: 100vw;
 }
+.slide-to-left{
+    animation: slideToLeft 1s ease;
+    animation-fill-mode: forwards;
+}
+.slide-to-right{
+    animation: slideToRight 1s ease;
+    animation-fill-mode: forwards;
+}
+.pop-up{
+    animation: popUp 1s ease;
+    animation-fill-mode: forwards;
+}
+.slide-to-bottom{
+    animation: slidToBottom 1s ease;
+    animation-fill-mode: forwards;
+}
+.slide-to-top{
+    animation: slideToTop 1s ease;
+    animation-fill-mode: forwards;
+}
+@keyframes slidToBottom {
+    0% {
+      transform: translateY(-20%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+}
+@keyframes slideToTop {
+    0% {
+      transform: translateY(20%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+}
+@keyframes slideToRight {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+}
+@keyframes slideToLeft {
+    0% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+}
+@keyframes popUp {
+    0% {
+      transform:scale(0.5);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+}

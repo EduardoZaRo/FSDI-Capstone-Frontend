@@ -9,7 +9,7 @@ import SelectElementSection from "./components/selectElementSection";
 import ShowGeneratedCode from "./components/showGeneratedCode";
 import { useLocation } from "react-router-dom";
 function StepTwo(props) {
-    
+  const [deviceName, setDeviceName] = useState("");
   const [peripherals, setPeripherals] = useState([]);
   const [selectedPeripherals, setSelectedPeripherals] = useState([]);
 
@@ -19,6 +19,7 @@ function StepTwo(props) {
   useEffect(function () {
     loadPeripherals();
     if(location.state){
+      setDeviceName(location.state.name);
       setSelectedMicrocontroller(location.state.microcontroller);
       setSelectedPeripherals(location.state.peripherals);
     }
@@ -71,7 +72,20 @@ function StepTwo(props) {
     <div className="page createdevice-page flex-column center">
       <div className="step-container">
         <AddDeviceStepper currentStep={1} />
-
+        <div className="flex input-group">
+            <span className="center">
+              <i className="bi bi-fonts"></i>
+            </span>
+            <input
+                type="text"
+                name="name"
+                id="device-name"
+                className=""
+                placeholder="Device name"
+                onChange={event => setDeviceName(event.target.value)}
+                value={deviceName}
+            />
+        </div>
         <SelectElementSection
           title={"Select a peripheral"}
           selectedElements={[...selectedPeripherals]}
@@ -81,8 +95,8 @@ function StepTwo(props) {
         />
 
         <div className="stepper-navigation-btns flex">
-          <button className="generate-code-button flex bg-secondary w-1/6 rounded  m-auto text-white text-center justify-center m-auto disabled:opacity-50 py-2"><Link to="/step-one" state={{microcontroller: selectedMicrocontroller, peripherals: selectedPeripherals}}className="text-white">Prev</Link></button>
-          <button className="generate-code-button flex bg-secondary w-1/6 rounded  m-auto text-white text-center justify-center m-auto disabled:opacity-50 py-2" disabled={selectedPeripherals.length == 0 ? true : false}> <Link to="/step-three" state={{microcontroller: selectedMicrocontroller, peripherals: selectedPeripherals}}className="text-white">Next</Link> </button>
+          <button className="generate-code-button flex bg-secondary w-1/6 rounded  m-auto text-white text-center justify-center m-auto disabled:opacity-50 py-2"><Link to="/step-one" state={{name: deviceName, microcontroller: selectedMicrocontroller, peripherals: selectedPeripherals}} className="text-white">Prev</Link></button>
+          <button className="generate-code-button flex bg-secondary w-1/6 rounded  m-auto text-white text-center justify-center m-auto disabled:opacity-50 py-2" disabled={(selectedPeripherals.length === 0 || deviceName === "") ? true : false }> <Link to="/step-three" state={{name: deviceName, microcontroller: selectedMicrocontroller, peripherals: selectedPeripherals}}className="text-white">Next</Link> </button>
         </div>
       </div>
     </div>

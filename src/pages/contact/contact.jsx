@@ -53,7 +53,7 @@ function Contact(){
                 <h2>Tijuana, B.C.</h2>
                 <p>Calzada Universidad 14418, Parque Industrial Internacional Tijuana, C.P. 22424</p>
             </div>
-            <div className="flex form contact-form">
+            <div className="flex form contact-form pop-up">
                 <div className="flex input-group">
                     <span className="center">
                         <i className="bi bi-envelope"></i>

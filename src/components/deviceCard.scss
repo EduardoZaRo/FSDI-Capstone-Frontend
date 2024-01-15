@@ -1,3 +1,55 @@
 .device-card{
+    background-color: white;
+    border-radius: 20px;
+    width: 80%;
+    max-width: 900px;
+    padding: 2rem;
+    text-decoration: none;
+    transition: 0.5s;
+}
+.device-card *{
+    text-decoration: none;
+    color: black;
+}
+.device-card .device-name{
+    text-align: center;
+}
+.device-card .peripheral{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+.device-card .peripheral .bi{
+    margin-right: 0.5rem;
+}
+.device-card:hover{
+    box-shadow: 7px 7px 0px -3px rgba(0,0,0,0.45);
+    -webkit-box-shadow: 7px 7px 0px -3px rgba(0,0,0,0.45);
+    -moz-box-shadow: 7px 7px 0px -3px rgba(0,0,0,0.45);
+    transition: 0.5s;
+}
+.device-card .device-micro .bi,
+.device-card .device-micro
+{
+    text-align:center;
+    font-size: 2rem;
+    margin: 0.4rem;
+}
+.device-card .device-peripherals{
+    padding: 1.2rem;
+    border-radius: 10px;
+    border: 1px solid var(--secondary-color-900);
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    transition: 0.5s;
+}
+.device-card .device-peripherals:hover{
+    background-color: var(--background-color);
+    .peripheral, .peripheral *{
+        color: white;
+    }
     
+    transition: 0.5s;
 }

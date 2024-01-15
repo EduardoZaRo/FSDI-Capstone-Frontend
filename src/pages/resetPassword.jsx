@@ -44,7 +44,7 @@ function ResetPassword(props) {
     }
     return (
         <div className="page flex-row reset-page center">
-            <div className="flex form reset-form">
+            <div className="flex form reset-form slide-to-bottom">
                 <h2 className="center text-center">We will send you and email to reset your password</h2>
                 <div className="flex input-group">
                     <span className="center">
