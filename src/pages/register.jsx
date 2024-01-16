@@ -76,7 +76,7 @@ function Register(props) {
     return (
         formAlert.text !== "Valid" ?
             <div className="page register-page center">
-                <div className="flex form register-form slide-to-left">
+                <div className="flex form register-form slide-in-left">
                     <h1 className="center text-center">Register</h1>
                     <div className="flex input-group">
                         <span className="center">

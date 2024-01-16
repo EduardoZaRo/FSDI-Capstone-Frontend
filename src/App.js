@@ -37,6 +37,10 @@ function App() {
   const auth = useAuthContext();
   useEffect(()=>{
     console.log(window)
+    auth.getCSRFToken();
+    // setInterval(()=>{
+    //   auth.getCSRFToken();
+    // }, 10000);
     auth.isAuthenticated().then(()=>{
       setLoggedIn(true);
       auth.getAuthenticatedUser();
@@ -46,6 +50,7 @@ function App() {
   }, []);
   const PrivateRoute = ({ children }) => {
     const auth = useAuthContext();
+    // auth.getCSRFToken();
     console.log("private route", auth.user, children)
     return (
       auth.user ? children : <Navigate to="/login" state={{isRedirected: true}}/>

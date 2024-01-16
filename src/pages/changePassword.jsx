@@ -59,7 +59,7 @@ function ChangePassword(props) {
 
     return (
         <div className="page flex-column center change-pwd-page">
-            <div className="flex form change-pwd-form">
+            <div className="flex form change-pwd-form slide-in-left">
                 <h1 className="center text-center">Change password</h1>
                 <div className="flex input-group">
                     <span className="center">

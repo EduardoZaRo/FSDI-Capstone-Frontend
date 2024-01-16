@@ -14,7 +14,7 @@ function ShowGeneratedCode(props) {
   const auth = useAuthContext();
 
   useEffect(()=>{
-    
+    console.log("generate code props", props)
     if(props.selectedMicrocontroller.length == 0){
       return;
     }

@@ -23,6 +23,7 @@ function StepThree(props) {
       setSelectedMicrocontroller(location.state.microcontroller);
       setSelectedPeripherals(location.state.peripherals);
     }
+    console.log("XDDDDD",location.state)
   }, []);
   function saveDevice(){
     setLoading(true);

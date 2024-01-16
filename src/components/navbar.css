@@ -40,3 +40,6 @@
     text-decoration: none;
     color: var(--neutral-color);
 }
+.navbarcomponent nav{
+    padding: 0!important;
+}

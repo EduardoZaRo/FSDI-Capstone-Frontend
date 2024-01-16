@@ -180,27 +180,58 @@ button[type=submit]:hover{
     width: 100vh;
     height: 100vw;
 }
-.slide-to-left{
-    animation: slideToLeft 1s ease;
+.slide-in-left{
+    animation: slideInLeft 1s ease;
     animation-fill-mode: forwards;
 }
-.slide-to-right{
-    animation: slideToRight 1s ease;
+.slide-in-right{
+    animation: slideInRight 1s ease;
     animation-fill-mode: forwards;
 }
 .pop-up{
     animation: popUp 1s ease;
     animation-fill-mode: forwards;
 }
-.slide-to-bottom{
-    animation: slidToBottom 1s ease;
+.slide-in-bottom{
+    animation: slideInBottom 1s ease;
     animation-fill-mode: forwards;
 }
-.slide-to-top{
-    animation: slideToTop 1s ease;
+.slide-in-top{
+    animation: slideInTop 1s ease;
     animation-fill-mode: forwards;
 }
-@keyframes slidToBottom {
+.slide-out-left{
+    animation: slideOutLeft 1s ease;
+    animation-fill-mode: forwards;
+}
+.slide-out-right{
+    animation: slideOutRight 1s ease;
+    animation-fill-mode: forwards;
+}
+.slide-out-top{
+    animation: slideOutTop 1s ease;
+    animation-fill-mode: forwards;
+}
+.slide-out-bottom{
+    animation: slideOutBottom 1s ease;
+    animation-fill-mode: forwards;
+}
+.pulsing-box-shadow{
+    animation: pulsingBoxShadow 3s ease infinite;
+    animation-fill-mode: forwards;
+}
+@keyframes pulsingBoxShadow {
+    0% {
+        box-shadow: 0 0 20px;
+    } 
+    50% {
+        box-shadow: 0 0 50px;
+    } 
+    100% {
+        box-shadow: 0 0 20px;
+    } 
+}
+@keyframes slideInBottom {
     0% {
       transform: translateY(-20%);
       opacity: 0;
@@ -210,7 +241,7 @@ button[type=submit]:hover{
       opacity: 1;
     }
 }
-@keyframes slideToTop {
+@keyframes slideInTop {
     0% {
       transform: translateY(20%);
       opacity: 0;
@@ -220,7 +251,7 @@ button[type=submit]:hover{
       opacity: 1;
     }
 }
-@keyframes slideToRight {
+@keyframes slideInRight {
     0% {
       transform: translateX(-100%);
       opacity: 0;
@@ -230,7 +261,7 @@ button[type=submit]:hover{
       opacity: 1;
     }
 }
-@keyframes slideToLeft {
+@keyframes slideInLeft {
     0% {
       transform: translateX(100%);
       opacity: 0;
@@ -248,5 +279,36 @@ button[type=submit]:hover{
     100% {
       transform: scale(1);
       opacity: 1;
+    }
+}
+
+@keyframes slideOutRight{
+    0% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+}
+@keyframes slideOutLeft {
+    0% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+}
+@keyframes slideOutLeft {
+    0% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(100%);
+      opacity: 0;
     }
 }

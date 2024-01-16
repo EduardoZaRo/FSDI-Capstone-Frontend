@@ -1,5 +1,6 @@
 .home-page .section-text-container{
     padding: 1rem;
+    text-align:center;
 }
 .home-page .section-text-container h2{
     font-size: 4rem;
@@ -11,4 +12,13 @@
 
 .home-page .full-height{
     height: calc(100vh - 60px);
+    overflow:hidden;
+}
+.home-page .page-section *{
+    width: 50%;
+}
+
+.home-page .page-section .section-text-container *{
+    width: 100%;
+    padding: 1rem;
 }
