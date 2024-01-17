@@ -53,3 +53,28 @@
     
     transition: 0.5s;
 }
+
+.device-card .buttons-container{
+    width: 100%;
+    justify-content: space-around;
+    margin-top: 1rem;
+}
+
+.device-card .buttons-container button{
+    height: 50px;
+    width: fit-content;
+    padding: 1rem;
+}
+.device-card .buttons-container button{
+    height: 50px;
+    width: fit-content;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.device-card .buttons-container .update-btn{
+    background-color: rgb(228, 228, 29);
+}
+.device-card .buttons-container .delete-btn{
+    background-color: rgb(227, 44, 44);
+}

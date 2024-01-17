@@ -93,6 +93,10 @@ function useAuth(){
     function getUserDevices(){
         return axios.get("/get-user-devices/")
     }
-    return {user, csrftoken, getCSRFToken, login, logout, isAuthenticated, getAuthenticatedUser, signup, resetPassword, resetPasswordConfirm, changePassword, getNewDeviceCode, getAllMicrocontrollers, getAllPeripherals, saveDevice, getUserDevices, getAllDevices}
+
+    function deleteDeviceById(data){
+        return axios.post("/delete-device/", {id: data})
+    }
+    return {user, csrftoken, getCSRFToken, login, logout, isAuthenticated, getAuthenticatedUser, signup, resetPassword, resetPasswordConfirm, changePassword, getNewDeviceCode, getAllMicrocontrollers, getAllPeripherals, saveDevice, getUserDevices, getAllDevices,deleteDeviceById}
 }
 export default useAuth;

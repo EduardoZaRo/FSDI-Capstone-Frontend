@@ -19,6 +19,7 @@ const authContext = createContext({
     saveDevice: () => {},
     getUserDevices: () => {},
     getAllDevices: () => {},
+    deleteDeviceById: () => {},
 });
 const useAuthContext = () => useContext(authContext);
 function AuthProvider(props){
