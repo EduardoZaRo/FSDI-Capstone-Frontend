@@ -30,35 +30,38 @@ import { useAuthContext} from "./state/authContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 
-function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+function App(props) {
+  const [loggedIn, setLoggedIn] = useState(null);
   const [csrftoken, setCSRFToken] = useState(null);
   const [userProfile, setUserProfile] = useState({});
   const auth = useAuthContext();
   useEffect(()=>{
-    console.log(window)
-    auth.getCSRFToken();
-    // setInterval(()=>{
-    //   auth.getCSRFToken();
-    // }, 10000);
+    console.log("Appjs loading", props)
+    // auth.getCSRFToken();
+    auth.setGlobalLoading(true);
     auth.isAuthenticated().then(()=>{
       setLoggedIn(true);
       auth.getAuthenticatedUser();
+      auth.setGlobalLoading(false);
     }).catch(()=>{{
       setLoggedIn(false);
+      auth.setGlobalLoading(false);
     }})
   }, []);
   const PrivateRoute = ({ children }) => {
-    const auth = useAuthContext();
-    // auth.getCSRFToken();
-    console.log("private route", auth.user, children)
+    console.log("private route", auth.user, loggedIn,children)
     return (
-      auth.user ? children : <Navigate to="/login" state={{isRedirected: true}}/>
+      <LoadingScreen>
+        {loggedIn ? children : <Navigate to="/login" state={{isRedirected: true}}/>}
+      </LoadingScreen>
+
+        // loggedIn && auth.loading === false ? children : <Error404/>
     )
   };
 
   return (
     <div className="App flex-column">
+      
         <BrowserRouter>
           <Navbar loggedIn={loggedIn}/>
           <Routes>
@@ -80,11 +83,12 @@ function App() {
             <Route path="/step-three" element={<PrivateRoute><StepThree/></PrivateRoute>}/>
             <Route path="/dashboard" element={<PrivateRoute><Dashboard/></PrivateRoute>}/>
             <Route path="/device-details" element={<PrivateRoute><DeviceDetails/></PrivateRoute>}/>
-            <Route path="/logout" element={<PrivateRoute><Logout setLoggedIn={setLoggedIn}/></PrivateRoute>}/>
+            <Route path="/logout" element={<PrivateRoute><Logout/></PrivateRoute>}/>
             <Route path="/change-password" element={<PrivateRoute><ChangePassword/></PrivateRoute>}/>
           </Routes>
           <Footer/>
         </BrowserRouter>
+
     </div>
   );
 }

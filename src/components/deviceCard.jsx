@@ -8,13 +8,12 @@ function DeviceCard(props) {
     const navigate = useNavigate();
     useEffect(function () {
         console.log("devicecard",props)
-    },[props]);  
+    },[]);  
     function deleteDevice(){
         console.log("deleting : ", props.data.id)
         auth.deleteDeviceById(props.data.id).
         then((response)=>{
             props.toggleDelete()
-            navigate('/dashboard');
         }).catch(()=>{
 
         })
@@ -28,13 +27,13 @@ function DeviceCard(props) {
 
                 <div className="device-peripherals m-auto">
                 {
-                    props.data.peripherals.map(e => <p className='peripheral'><i className={"bi bi-"+e.icon}></i>{e.name}</p>)
+                    props.data.peripherals.map(e => <p className='peripheral'><i className={"bi bi-"+e.peripheral.icon}></i>{e.peripheral.name}</p>)
                 }
                 </div>
 
             </Link>
             <div className="buttons-container flex">
-                <button className="update-btn">
+                <button className="update-btn center">
                     <i className="bi bi-pencil-square"></i>
                 </button>
                 <button className="delete-btn" onClick={deleteDevice}>

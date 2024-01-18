@@ -12,7 +12,6 @@ function Login(props) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [formAlert, setFormAlert] = useState({"text":"", "color":""});
-    const [loading, setLoading] = useState(false);
     const auth = useAuthContext();
     const {state} = useLocation();
     const navigate = useNavigate();
@@ -31,18 +30,18 @@ function Login(props) {
         }
         else{
             setFormValid("Valid form");
-            setLoading(true);
+            auth.setGlobalLoading(true);
             auth.login({
                 "email": email,
                 "password": password,
             }).then(()=>{
                 props.setLoggedIn(false);
-                setLoading(false);
+                auth.setGlobalLoading(false);
                 // return (<Link to="/"/>);
                 navigate("/");
                 
             }).catch(()=>{
-                setLoading(false);
+                auth.setGlobalLoading(false);
                 setFormError("Mail or password incorrect, try again");
             })
 
@@ -64,7 +63,8 @@ function Login(props) {
     }
     return (
         !auth.user ? 
-        loading? <LoadingScreen/> :
+        // auth.loading ? <LoadingScreen/> :
+        <LoadingScreen>
         <div className="page flex-row center login-page">
             
             <div className="flex form login-form pop-up">
@@ -107,6 +107,7 @@ function Login(props) {
                 <Link to="/register" className="register-link"><h3>Don't have an account yet? Sign up <i className="bi bi-box-arrow-up-right"></i></h3></Link>
             </div>
         </div>
+        </LoadingScreen>
         :
         <Navigate to="/"/>
     );

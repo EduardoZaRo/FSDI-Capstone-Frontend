@@ -1,4 +1,4 @@
-import "./dashboard.scss";
+import "./dashboard.css";
 import DataService from "../services/dataService";
 import {useEffect, useState} from "react";
 import DeviceCard from "../components/deviceCard";
@@ -7,24 +7,22 @@ import LoadingScreen from '../components/loadingScreen';
 
 function Dashboard(props) {
     const [devices, setDevices] = useState([]);
-    const [loading, setLoading] = useState(false);
     const [onDelete, setOnDelete] = useState(false);
     const auth = useAuthContext();
 
     useEffect(function () {
-        setLoading(true);
+        auth.setGlobalLoading(true);
         auth.getUserDevices()
         .then((response)=>{
             setDevices(response.data)
             console.log(response.data)
-            setLoading(false);
+            auth.setGlobalLoading(false);
         }).catch((error)=>{
-            setLoading(false);
+            auth.setGlobalLoading(false);
         })
     },[onDelete]);  
     const toggleDelete = () => {setOnDelete(!onDelete);}
     return (
-        loading ? <LoadingScreen/> :
         <div className="page dashboard-page flex-column center">
             {   
                 devices.length !== 0 ?

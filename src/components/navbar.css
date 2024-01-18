@@ -41,5 +41,6 @@
     color: var(--neutral-color);
 }
 .navbarcomponent nav{
+    margin-right: 1rem;
     padding: 0!important;
 }

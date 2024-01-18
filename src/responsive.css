@@ -2,6 +2,9 @@
     html{
         font-size: 10px;
     }
+    .navbarcomponent nav{
+        margin: 0;
+    }
     .navbarcomponent .nav-btn{
         display: block!important;
     }

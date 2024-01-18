@@ -4,13 +4,20 @@ import LoadingScreen from '../components/loadingScreen';
 function useAuth(){
     const [user, setUser] = useState(null);
     const [csrftoken, setCsrftoken] = useState(null);
-    const [waitingRequest, setWaitingRequest] = useState(false);
+    const [loading, setLoading] = useState(false);
+
     axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
     axios.defaults.withCredentials = true;
     axios.defaults.headers = {
         "Content-Type": "application/json",
         "X-Csrftoken": csrftoken,
     };
+    function setGlobalLoading(){
+        return setLoading;
+    }
+    function getGlobalLoading(){
+        return loading;
+    }
     async function getCSRFToken(){
         console.log("getCSRFToken function");
         try{
@@ -37,15 +44,16 @@ function useAuth(){
     }
     async function logout(){
         console.log("logout function");
+        setLoading(true);
         await getCSRFToken();
         let apiResponse = await axios.post("/logout/", {});
         setCsrftoken(null);
         setUser(null);
+        setLoading(false);
     }
-    async function isAuthenticated(){
+    function isAuthenticated(){
         console.log("isAuthenticated function");
-        await getCSRFToken();
-        let apiResponse = await axios.get("/is-authenticated/");
+        return axios.get("/is-authenticated/");
     }
     async function getAuthenticatedUser(){
         console.log("getAuthenticatedUser function");
@@ -97,6 +105,12 @@ function useAuth(){
     function deleteDeviceById(data){
         return axios.post("/delete-device/", {id: data})
     }
-    return {user, csrftoken, getCSRFToken, login, logout, isAuthenticated, getAuthenticatedUser, signup, resetPassword, resetPasswordConfirm, changePassword, getNewDeviceCode, getAllMicrocontrollers, getAllPeripherals, saveDevice, getUserDevices, getAllDevices,deleteDeviceById}
+
+    async function getDevicePeripheralRead(deviceID, peripheralID){
+        return axios.post("/get-device-read/", 
+            {"deviceID": deviceID, "peripheralID": peripheralID}
+        )
+    }
+    return {user, csrftoken, loading, setGlobalLoading, getGlobalLoading, getCSRFToken, login, logout, isAuthenticated, getAuthenticatedUser, signup, resetPassword, resetPasswordConfirm, changePassword, getNewDeviceCode, getAllMicrocontrollers, getAllPeripherals, saveDevice, getUserDevices, getAllDevices,deleteDeviceById, getDevicePeripheralRead}
 }
 export default useAuth;

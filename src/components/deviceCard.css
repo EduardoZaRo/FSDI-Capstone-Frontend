@@ -61,6 +61,8 @@
 }
 
 .device-card .buttons-container button{
+    display: flex;
+    align-items: center;
     height: 50px;
     width: fit-content;
     padding: 1rem;

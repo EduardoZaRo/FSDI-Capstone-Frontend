@@ -10,15 +10,13 @@ import { useAuthContext } from "../state/authContext";
 import LoadingScreen from '../components/loadingScreen';
 function Logout(props) {
     const auth = useAuthContext();
-    const [loading, setLoading] = useState(true);
     useEffect(()=>{
-        auth.logout()//.then(()=>{setLoading(false);}).catch(()=>{setLoading(false);});
+        auth.logout()
     }, []);
     return (
-        // loading ? <LoadingScreen/> : <Navigate to="/login" />
-        <>
-            {loading ? <LoadingScreen/> : <Navigate to="/login" />}
-        </>
+            <LoadingScreen>
+                <Navigate to="/login" />
+            </LoadingScreen>
 
     );
 }
