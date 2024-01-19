@@ -7,13 +7,15 @@ const authContext = createContext({
     user: {},
     csrftoken: null,
     loading: false,
+    setCsrftoken: () => {},
+    setUser: () => {},
     setGlobalLoading: () => {},
     getGlobalLoading: () => {},
-    getCSRFToken: async () => {},
+    getCSRFToken: () => {},
     login: async () => {},
     logout: async () => {},
     isAuthenticated: () => {},
-    getAuthenticatedUser: async () => {},
+    getAuthenticatedUser: () => {},
     signup: async () => {},
     resetPassword: async () => {},
     resetPasswordConfirm: async () => {}, 
@@ -30,9 +32,13 @@ const authContext = createContext({
 const useAuthContext = () => useContext(authContext);
 function AuthProvider(props){
     const auth = useAuth();
+    useEffect(()=>{}, [])
     return (
         <authContext.Provider value={auth}>
-            {auth.loading ? <LoadingScreen/> : props.children}
+            
+            {/* <LoadingScreen> */}
+                {props.children}
+            {/* </LoadingScreen> */}
         </authContext.Provider>
     );
 }

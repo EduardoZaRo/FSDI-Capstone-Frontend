@@ -4,7 +4,11 @@ import LoadingScreen from '../components/loadingScreen';
 function useAuth(){
     const [user, setUser] = useState(null);
     const [csrftoken, setCsrftoken] = useState(null);
-    const [loading, setLoading] = useState(false);
+    // const [loading, setLoading] = useState(false);
+    var loading = false;
+    function setLoading(state){
+        loading = state;
+    }
 
     axios.defaults.baseURL = process.env.REACT_APP_BACKEND_URL;
     axios.defaults.withCredentials = true;
@@ -12,8 +16,8 @@ function useAuth(){
         "Content-Type": "application/json",
         "X-Csrftoken": csrftoken,
     };
-    function setGlobalLoading(){
-        return setLoading;
+    function setGlobalLoading(state){
+        setLoading(state)
     }
     function getGlobalLoading(){
         return loading;
@@ -42,24 +46,25 @@ function useAuth(){
         let apiResponse = await axios.post("/login/", data);
         setUser(apiResponse.data);
     }
-    async function logout(){
+    function logout(){
         console.log("logout function");
-        setLoading(true);
-        await getCSRFToken();
-        let apiResponse = await axios.post("/logout/", {});
-        setCsrftoken(null);
-        setUser(null);
-        setLoading(false);
+        // await getCSRFToken()
+        // setLoading(true);
+        // setCsrftoken(null);
+        // setUser(null);
+        return axios.post("/logout/", {});
+
     }
     function isAuthenticated(){
         console.log("isAuthenticated function");
         return axios.get("/is-authenticated/");
     }
-    async function getAuthenticatedUser(){
+    function getAuthenticatedUser(){
         console.log("getAuthenticatedUser function");
-        await getCSRFToken();
-        let apiResponse = await axios.get("/profile/");
-        setUser(apiResponse.data);
+        // await getCSRFToken();
+        // let apiResponse = await axios.get("/profile/");
+        // setUser(apiResponse.data);
+        return axios.get("/profile/");
     }
 
     async function resetPassword(data){
@@ -111,6 +116,6 @@ function useAuth(){
             {"deviceID": deviceID, "peripheralID": peripheralID}
         )
     }
-    return {user, csrftoken, loading, setGlobalLoading, getGlobalLoading, getCSRFToken, login, logout, isAuthenticated, getAuthenticatedUser, signup, resetPassword, resetPasswordConfirm, changePassword, getNewDeviceCode, getAllMicrocontrollers, getAllPeripherals, saveDevice, getUserDevices, getAllDevices,deleteDeviceById, getDevicePeripheralRead}
+    return {user, csrftoken, loading, setCsrftoken, setUser, setGlobalLoading, getGlobalLoading, getCSRFToken, login, logout, isAuthenticated, getAuthenticatedUser, signup, resetPassword, resetPasswordConfirm, changePassword, getNewDeviceCode, getAllMicrocontrollers, getAllPeripherals, saveDevice, getUserDevices, getAllDevices,deleteDeviceById, getDevicePeripheralRead}
 }
 export default useAuth;

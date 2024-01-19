@@ -76,7 +76,7 @@ function Home(){
         }
         window.addEventListener('wheel', sectionNavigation);
         return () =>{ window.removeEventListener('wheel', sectionNavigation); window.scrollTo({top: 0});};
-    }, [maxSections]);
+     }, [/*maxSections*/]);
 
     const incrementCurrentSection = (() => {if(currentSection < maxSections) currentSection++});
     const decrementCurrentSection = (() => {if(currentSection > 0) currentSection--});

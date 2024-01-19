@@ -1,0 +1,58 @@
+/* https://codepen.io/fsbraun/pen/XQQpgb */
+.gauge-chart {
+    width: 200px; 
+    /* --rotation:180deg; Max */
+    --color:#5cb85c; 
+    --background:#e9ecef;
+    position: relative;
+    border-radius: 50%/100% 100% 0 0;
+    background-color: var(--background-color, #a22);
+    overflow: hidden;
+    margin: auto;
+}
+.gauge-chart:before{
+    content: "";
+    display: block;
+    padding-top: 50%;   /* ratio of 2:1*/
+}
+.gauge-chart .chart {
+  overflow: hidden;
+}
+.gauge-chart .gauge-base {
+  position: absolute;
+  left: 20%;
+  right: 20%;
+  bottom: 0;
+  top: 40%;
+  background-color: #fff;
+  border-radius: 50%/100% 100% 0 0;
+}
+
+.gauge-chart .gauge-value {
+    position:  absolute;
+    top: -1px;
+    left: -1px;
+    bottom: 0;
+    right: -1px;
+    background-color: var(--neutral-color, #aaa);
+    transform:rotate(0); 
+    transform-origin: bottom center; 
+    transition-duration: 600;
+}
+.gauge-chart:hover {
+  --rotation: 100deg;
+}
+.gauge-chart .value {
+  position:absolute; bottom:0%; left:0;   
+  width:100%; 
+  text-align: center;
+}
+
+.gauge-chart .min {
+  position:absolute; 
+  bottom:0; left:5%;   
+}
+.gauge-chart .max {
+  position:absolute; 
+  bottom:0; right:5%;   
+ }

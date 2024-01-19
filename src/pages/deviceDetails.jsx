@@ -1,6 +1,9 @@
+import './deviceDetails.css';
 import { useEffect, useState, useCallback } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../state/authContext";
+import LedChart from '../components/ledChart';
+import PotentiometerChart from '../components/potentiometerChart';
 function DeviceDetails(props){
     const location = useLocation();
     const auth = useAuthContext();
@@ -46,6 +49,14 @@ function DeviceDetails(props){
             // console.log(auth.getGlobalLoading())
         }
     }, []);
+    function renderPeripheralChart(read){
+        if(read.peripheral.peripheral.name === "LED"){
+            return <LedChart key={read.updated_at} data={read}/>
+        }
+        if(read.peripheral.peripheral.name === "POTENTIOMETER"){
+            return <PotentiometerChart key={read.updated_at} data={read}/>
+        }
+    }
     return(
         <div className="device-details page flex center">
             {
@@ -53,11 +64,17 @@ function DeviceDetails(props){
                 
                 <div className="peripherals-charts">
                     {reads.map(r=>
-                        <div key={r.updated_at}>  
-                            <h1>This is a {r.peripheral.peripheral.name}</h1>
-                            <p>State: {r.value} - Update date: {r.updated_at}</p>
+                        // <div key={r.updated_at}>  
+                        //     <h1>This is a {r.peripheral.peripheral.name}</h1>
+                        //     <p>State: {r.value} - Update date: {r.updated_at}</p>
+                        //     <div className="led-diagram"></div>
+                        //     <br />
+                        // </div>
+                        // <LedChart key={r.updated_at} data={r}/>
+                        <>  
+                            {renderPeripheralChart(r)}
                             <br />
-                        </div>
+                        </>
 
                     )}
                 </div>

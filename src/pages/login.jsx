@@ -35,6 +35,7 @@ function Login(props) {
                 "email": email,
                 "password": password,
             }).then(()=>{
+                auth.getCSRFToken();
                 props.setLoggedIn(false);
                 auth.setGlobalLoading(false);
                 // return (<Link to="/"/>);
@@ -64,7 +65,7 @@ function Login(props) {
     return (
         !auth.user ? 
         // auth.loading ? <LoadingScreen/> :
-        <LoadingScreen>
+        // <LoadingScreen>
         <div className="page flex-row center login-page">
             
             <div className="flex form login-form pop-up">
@@ -107,7 +108,7 @@ function Login(props) {
                 <Link to="/register" className="register-link"><h3>Don't have an account yet? Sign up <i className="bi bi-box-arrow-up-right"></i></h3></Link>
             </div>
         </div>
-        </LoadingScreen>
+        // </LoadingScreen>
         :
         <Navigate to="/"/>
     );

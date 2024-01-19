@@ -9,27 +9,32 @@ function Dashboard(props) {
     const [devices, setDevices] = useState([]);
     const [onDelete, setOnDelete] = useState(false);
     const auth = useAuthContext();
-
+       
     useEffect(function () {
         auth.setGlobalLoading(true);
         auth.getUserDevices()
         .then((response)=>{
             setDevices(response.data)
-            console.log(response.data)
             auth.setGlobalLoading(false);
         }).catch((error)=>{
             auth.setGlobalLoading(false);
         })
-    },[onDelete]);  
+    },[]);  
     const toggleDelete = () => {setOnDelete(!onDelete);}
     return (
+        <>
+                {/* {auth.loading === true && <LoadingScreen/>}  */}
         <div className="page dashboard-page flex-column center">
             {   
-                devices.length !== 0 ?
-                devices.map(d =>  <DeviceCard key={d.microcontroller.name} data={d} toggleDelete={toggleDelete}/>)
+                devices.length !== 0 && auth.getGlobalLoading() === false ?
+                devices.map(d =>  <DeviceCard key={d.id} data={d} toggleDelete={toggleDelete}/>)
                 : <h1>No devices found, try creating one!</h1>
             }
         </div>
+        </>
+
+
+
     );
 }
 

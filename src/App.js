@@ -36,12 +36,13 @@ function App(props) {
   const [userProfile, setUserProfile] = useState({});
   const auth = useAuthContext();
   useEffect(()=>{
-    console.log("Appjs loading", props)
-    // auth.getCSRFToken();
+    console.log("Appjs loading", auth)
+    
     auth.setGlobalLoading(true);
     auth.isAuthenticated().then(()=>{
+      auth.getCSRFToken();
       setLoggedIn(true);
-      auth.getAuthenticatedUser();
+      auth.getAuthenticatedUser().then((response)=>{auth.setUser(response.data);})
       auth.setGlobalLoading(false);
     }).catch(()=>{{
       setLoggedIn(false);
@@ -50,18 +51,20 @@ function App(props) {
   }, []);
   const PrivateRoute = ({ children }) => {
     console.log("private route", auth.user, loggedIn,children)
+    useEffect(()=>{}, [])
+    if(auth.loading === true ) return <LoadingScreen/>
     return (
-      <LoadingScreen>
-        {loggedIn ? children : <Navigate to="/login" state={{isRedirected: true}}/>}
-      </LoadingScreen>
-
-        // loggedIn && auth.loading === false ? children : <Error404/>
-    )
+      <>  
+      {/* {auth.getGlobalLoading() === true && <LoadingScreen/>}  */}
+      {loggedIn === true ? children : <Navigate to="/login" state={{isRedirected: true}}/>}
+      </>
+        
+        // loggedIn === true ? children : <Navigate to="/login" state={{isRedirected: true}}/>
+    );
   };
 
   return (
     <div className="App flex-column">
-      
         <BrowserRouter>
           <Navbar loggedIn={loggedIn}/>
           <Routes>
@@ -77,6 +80,7 @@ function App(props) {
             <Route path="/*" element={<Error404/>}/>
 
             {/* Private routes (need auth) */}
+            
             <Route path="/create-device" element={<PrivateRoute><CreateDevice/></PrivateRoute>}/>
             <Route path="/step-one" element={<PrivateRoute><StepOne/></PrivateRoute>}/>
             <Route path="/step-two" element={<PrivateRoute><StepTwo/></PrivateRoute>}/>
@@ -88,7 +92,6 @@ function App(props) {
           </Routes>
           <Footer/>
         </BrowserRouter>
-
     </div>
   );
 }

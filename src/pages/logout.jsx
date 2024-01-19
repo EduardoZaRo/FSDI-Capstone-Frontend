@@ -11,12 +11,18 @@ import LoadingScreen from '../components/loadingScreen';
 function Logout(props) {
     const auth = useAuthContext();
     useEffect(()=>{
+        auth.setGlobalLoading(true);
         auth.logout()
+        .then(()=>{
+            auth.setCsrftoken(null);
+            auth.setUser(null);
+            auth.setGlobalLoading(false);
+        }).catch(()=>{auth.setGlobalLoading(false);})
     }, []);
     return (
-            <LoadingScreen>
+            // <LoadingScreen>
                 <Navigate to="/login" />
-            </LoadingScreen>
+            // </LoadingScreen>
 
     );
 }

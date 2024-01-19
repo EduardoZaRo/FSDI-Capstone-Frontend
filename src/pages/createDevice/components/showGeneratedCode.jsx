@@ -40,7 +40,7 @@ function ShowGeneratedCode(props) {
     navigator.clipboard.writeText(code);
   }
   return (
-      loading? <LoadingScreen/> :
+      // loading? <LoadingScreen/> :
       <div className="step-2 w-full">
       <h2 className="text-center">Ready! You only need to follow the next steps to finish</h2>
       <ol className="flex-column m-auto w-full space-y-1 list-decimal list-inside flex-column gap-5">

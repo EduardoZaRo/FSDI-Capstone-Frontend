@@ -18,8 +18,12 @@ function LedChart(props) {
         })
     }
     return (
-        <div className="device-card flex-column">
-
+        <div className="led-chart chart flex-column">
+            <div key={props.data.updated_at}>  
+                <h1>This is a {props.data.peripheral.peripheral.name}</h1>
+                <p>State: {props.data.value} - Update date: {props.data.updated_at}</p>
+                <div className={"led-diagram " + (props.data.value === '1' ? " on " : " off ") }></div>
+            </div>
         </div>
     );
 }

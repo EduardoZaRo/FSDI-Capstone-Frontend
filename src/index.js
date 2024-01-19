@@ -11,9 +11,9 @@ root.render(
   // <React.StrictMode>
   
     <AuthProvider>
-      <LoadingScreen>
+      {/* <LoadingScreen> */}
       <App />
-      </LoadingScreen>
+      {/* </LoadingScreen> */}
     </AuthProvider>
   // </React.StrictMode>
 );
