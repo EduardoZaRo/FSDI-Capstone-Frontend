@@ -6,11 +6,12 @@ import Highlight from 'react-highlight'
 import "highlight.js/styles/github.css";
 import hljs from "highlight.js";
 import LoadingScreen from '../../../components/loadingScreen';
+import {useLoader} from '../../../state/loaderContext';
 function ShowGeneratedCode(props) {
   const [code, setCode] = useState('');
   const [loading, setLoading] = useState(false);
   const [neededLibraries, setNeededLibraries] = useState([]);
-  
+  const {showLoader, hideLoader} = useLoader();
   const auth = useAuthContext();
 
   useEffect(()=>{
@@ -19,7 +20,7 @@ function ShowGeneratedCode(props) {
       return;
     }
     console.log(props)
-    setLoading(true);
+    showLoader("Generatig code ...");
     auth.getNewDeviceCode({
         'name': props.deviceName,
         'microcontroller': props.selectedMicrocontroller[0],
@@ -30,10 +31,10 @@ function ShowGeneratedCode(props) {
         let auxLibraries = auxCode.match(/[A-Za-z0-9]+\.h/g);
         setNeededLibraries(auxLibraries);
         hljs.highlightAll();
-        setLoading(false);
+        hideLoader();
     }).catch((error)=>{
         console.log(error)
-        setLoading(false);
+        hideLoader();
     })
   }, [props.selectedMicrocontroller.length])
   function copyCodeToClipboard(){

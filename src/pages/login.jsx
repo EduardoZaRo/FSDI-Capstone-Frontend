@@ -6,6 +6,7 @@ import Cookies from 'js-cookie';
 import StoreContext from "../state/authContext";
 import {BrowserRouter, Routes, Route, Navigate, useLocation, useNavigate} from "react-router-dom";
 import { useAuthContext } from "../state/authContext";
+import { useLoader } from "../state/loaderContext";
 import LoginImage from '../assets/img/select-board.png';
 import LoadingScreen from '../components/loadingScreen';
 function Login(props) {
@@ -14,6 +15,7 @@ function Login(props) {
     const [formAlert, setFormAlert] = useState({"text":"", "color":""});
     const auth = useAuthContext();
     const {state} = useLocation();
+    const { showLoader, hideLoader } = useLoader();
     const navigate = useNavigate();
     function verifyForm(){
         if(password === ""){
@@ -30,19 +32,19 @@ function Login(props) {
         }
         else{
             setFormValid("Valid form");
-            auth.setGlobalLoading(true);
+            showLoader("Verifying login...");
             auth.login({
                 "email": email,
                 "password": password,
             }).then(()=>{
                 auth.getCSRFToken();
                 props.setLoggedIn(false);
-                auth.setGlobalLoading(false);
+                hideLoader();
                 // return (<Link to="/"/>);
                 navigate("/");
                 
             }).catch(()=>{
-                auth.setGlobalLoading(false);
+                hideLoader();
                 setFormError("Mail or password incorrect, try again");
             })
 

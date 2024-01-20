@@ -24,9 +24,10 @@ import About from './pages/about/about';
 import Contact from './pages/contact/contact';
 import './responsive.css';
 import { useEffect, useState,useContext } from "react";
-
+import { LoaderProvider } from './state/loaderContext';
 import "tw-elements-react/dist/css/tw-elements-react.min.css";
 import { useAuthContext} from "./state/authContext";
+import { useLoader } from "./state/loaderContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 
@@ -34,29 +35,34 @@ function App(props) {
   const [loggedIn, setLoggedIn] = useState(null);
   const [csrftoken, setCSRFToken] = useState(null);
   const [userProfile, setUserProfile] = useState({});
+  const { loading, showLoader, hideLoader } = useLoader();
   const auth = useAuthContext();
   useEffect(()=>{
     console.log("Appjs loading", auth)
     
-    auth.setGlobalLoading(true);
+    showLoader("Checking open session...");
     auth.isAuthenticated().then(()=>{
       auth.getCSRFToken();
       setLoggedIn(true);
       auth.getAuthenticatedUser().then((response)=>{auth.setUser(response.data);})
-      auth.setGlobalLoading(false);
+      hideLoader();
     }).catch(()=>{{
       setLoggedIn(false);
-      auth.setGlobalLoading(false);
+      hideLoader();
     }})
   }, []);
   const PrivateRoute = ({ children }) => {
     console.log("private route", auth.user, loggedIn,children)
-    useEffect(()=>{}, [])
-    if(auth.loading === true ) return <LoadingScreen/>
+    // if(auth.loading === true ) return <LoadingScreen/>
+    if (!loggedIn) {
+      // Redirige a la página de inicio de sesión si el usuario no está autenticado
+      // Puedes personalizar la ruta de redirección según tus necesidades.
+      return <Navigate to="/login" state={{isRedirected: true}}/>
+    }
     return (
       <>  
       {/* {auth.getGlobalLoading() === true && <LoadingScreen/>}  */}
-      {loggedIn === true ? children : <Navigate to="/login" state={{isRedirected: true}}/>}
+      {loggedIn === true && loading === false ? children : <Navigate to="/login" state={{isRedirected: true}}/>}
       </>
         
         // loggedIn === true ? children : <Navigate to="/login" state={{isRedirected: true}}/>
@@ -64,35 +70,38 @@ function App(props) {
   };
 
   return (
-    <div className="App flex-column">
-        <BrowserRouter>
-          <Navbar loggedIn={loggedIn}/>
-          <Routes>
-            {/* Public routes */}
-            <Route path="/about" element={<About/>}/>
-            <Route path="/contact" element={<Contact/>}/>
-            <Route path="/" element={<Home/>}/>
-            <Route path="/login" element={<Login/>}/>
-            <Route path="/register" element={<Register/>}/>
-            <Route path="/reset-password" element={<ResetPassword/>}/>
-            <Route path="/reset-password/confirm" element={<ResetPasswordConfirm/>}/>
-            <Route path="/error-404" element={<Error404/>}/>
-            <Route path="/*" element={<Error404/>}/>
+    <LoaderProvider>
+      <LoadingScreen/>
+      <div className="App flex-column">
+          <BrowserRouter>
+            <Navbar loggedIn={loggedIn}/>
+            <Routes>
+              {/* Public routes */}
+              <Route path="/about" element={<About/>}/>
+              <Route path="/contact" element={<Contact/>}/>
+              <Route path="/" element={<Home/>}/>
+              <Route path="/login" element={<Login/>}/>
+              <Route path="/register" element={<Register/>}/>
+              <Route path="/reset-password" element={<ResetPassword/>}/>
+              <Route path="/reset-password/confirm" element={<ResetPasswordConfirm/>}/>
+              <Route path="/error-404" element={<Error404/>}/>
+              <Route path="/*" element={<Error404/>}/>
 
-            {/* Private routes (need auth) */}
-            
-            <Route path="/create-device" element={<PrivateRoute><CreateDevice/></PrivateRoute>}/>
-            <Route path="/step-one" element={<PrivateRoute><StepOne/></PrivateRoute>}/>
-            <Route path="/step-two" element={<PrivateRoute><StepTwo/></PrivateRoute>}/>
-            <Route path="/step-three" element={<PrivateRoute><StepThree/></PrivateRoute>}/>
-            <Route path="/dashboard" element={<PrivateRoute><Dashboard/></PrivateRoute>}/>
-            <Route path="/device-details" element={<PrivateRoute><DeviceDetails/></PrivateRoute>}/>
-            <Route path="/logout" element={<PrivateRoute><Logout/></PrivateRoute>}/>
-            <Route path="/change-password" element={<PrivateRoute><ChangePassword/></PrivateRoute>}/>
-          </Routes>
-          <Footer/>
-        </BrowserRouter>
-    </div>
+              {/* Private routes (need auth) */}
+              
+              <Route path="/create-device" element={<PrivateRoute><CreateDevice/></PrivateRoute>}/>
+              <Route path="/step-one" element={<PrivateRoute><StepOne/></PrivateRoute>}/>
+              <Route path="/step-two" element={<PrivateRoute><StepTwo/></PrivateRoute>}/>
+              <Route path="/step-three" element={<PrivateRoute><StepThree/></PrivateRoute>}/>
+              <Route path="/dashboard" element={<PrivateRoute><Dashboard/></PrivateRoute>}/>
+              <Route path="/device-details" element={<PrivateRoute><DeviceDetails/></PrivateRoute>}/>
+              <Route path="/logout" element={<PrivateRoute><Logout/></PrivateRoute>}/>
+              <Route path="/change-password" element={<PrivateRoute><ChangePassword/></PrivateRoute>}/>
+            </Routes>
+            <Footer/>
+          </BrowserRouter>
+      </div>
+    </LoaderProvider>
   );
 }
 

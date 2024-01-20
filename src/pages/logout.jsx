@@ -7,17 +7,19 @@ import {useContext} from 'react';
 import StoreContext from "../state/authContext";
 import Cookies from 'js-cookie';
 import { useAuthContext } from "../state/authContext";
+import { useLoader } from "../state/loaderContext";
 import LoadingScreen from '../components/loadingScreen';
 function Logout(props) {
     const auth = useAuthContext();
+    const { showLoader, hideLoader } = useLoader();
     useEffect(()=>{
-        auth.setGlobalLoading(true);
+        showLoader();
         auth.logout()
         .then(()=>{
             auth.setCsrftoken(null);
             auth.setUser(null);
-            auth.setGlobalLoading(false);
-        }).catch(()=>{auth.setGlobalLoading(false);})
+            hideLoader();
+        }).catch(()=>{hideLoader();})
     }, []);
     return (
             // <LoadingScreen>

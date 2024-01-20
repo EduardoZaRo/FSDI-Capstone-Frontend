@@ -2,14 +2,16 @@ import './deviceDetails.css';
 import { useEffect, useState, useCallback } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../state/authContext";
+import { useLoader } from "../state/loaderContext";
 import LedChart from '../components/ledChart';
 import PotentiometerChart from '../components/potentiometerChart';
+
 function DeviceDetails(props){
     const location = useLocation();
     const auth = useAuthContext();
     const [microcontroller, setMicrocontroller] = useState({});
     const [reads, setReads] = useState([]);
-
+    const { showLoader, hideLoader } = useLoader();
     var displayReads = false;
 
     useEffect(function () {
@@ -19,7 +21,7 @@ function DeviceDetails(props){
                 let result = await auth.getDevicePeripheralRead(location.state.id, p.id)
                 return new Promise((res, rej) => {res(result)})
             })
-            
+            showLoader("Loading peripherals...");
             Promise.all(promises)
             .then((results) => {
                 let copy = []
@@ -31,6 +33,11 @@ function DeviceDetails(props){
                 }
                 setReads(copy)
                 displayReads = true;
+                hideLoader();
+            })
+            .catch((errors)=>{
+                console.log(errors)
+                hideLoader();
             })
             // auth.setGlobalLoading(true);
             // for(const peripheral of location.state.peripherals){
@@ -79,7 +86,7 @@ function DeviceDetails(props){
                     )}
                 </div>
 
-                : <h1>Loading...</h1>
+                : <h1>No data in db to read...</h1>
             }
         </div>
     );

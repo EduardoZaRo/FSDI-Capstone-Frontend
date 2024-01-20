@@ -9,11 +9,13 @@ import { useAuthContext } from "../../state/authContext";
 import SelectElementSection from "./components/selectElementSection";
 import ShowGeneratedCode from "./components/showGeneratedCode";
 import { useLocation, useNavigate } from "react-router-dom";
+import {useLoader} from '../../state/loaderContext';
 function StepThree(props) {
   const [deviceName, setDeviceName] = useState("");
   const [selectedMicrocontroller, setSelectedMicrocontroller] = useState([]);
   const [selectedPeripherals, setSelectedPeripherals] = useState([]);
   const [loading, setLoading] = useState(false);
+  const {showLoader, hideLoader} = useLoader();
   const auth = useAuthContext();
   const location = useLocation();
   const navigate = useNavigate();
@@ -26,16 +28,18 @@ function StepThree(props) {
     console.log("XDDDDD",location.state)
   }, []);
   function saveDevice(){
-    setLoading(true);
+    showLoader("Saving device ...");
     auth.saveDevice({
         'name': deviceName,
         'microcontroller': selectedMicrocontroller[0],
         'peripherals': selectedPeripherals
     }).then((response)=>{
+        hideLoader();
         navigate('/dashboard');
+        
     }).catch((error)=>{
         console.log(error)
-        setLoading(false);
+        hideLoader();
     })
   }
   return (

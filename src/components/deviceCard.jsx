@@ -3,19 +3,24 @@ import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import { useAuthContext } from "../state/authContext";
 import { useNavigate } from 'react-router-dom';
+import { useLoader } from "../state/loaderContext";
+
 function DeviceCard(props) {
+    const { showLoader, hideLoader } = useLoader();
     const auth = useAuthContext();
     const navigate = useNavigate();
     useEffect(function () {
         console.log("devicecard",props)
     },[]);  
     function deleteDevice(){
-        console.log("deleting : ", props.data.id)
+        showLoader("Deleting : "+ props.data.id);
         auth.deleteDeviceById(props.data.id).
         then((response)=>{
+            
             props.toggleDelete()
+            hideLoader();
         }).catch(()=>{
-
+            hideLoader();
         })
     }
     return (
