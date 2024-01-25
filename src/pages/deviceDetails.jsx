@@ -15,13 +15,14 @@ function DeviceDetails(props){
     var displayReads = false;
 
     useEffect(function () {
+        setInterval(() =>  {
         if(location.state){
             console.log("device details", location.state)
             let promises = location.state.peripherals.map(async (p) => {
                 let result = await auth.getDevicePeripheralRead(location.state.id, p.id)
                 return new Promise((res, rej) => {res(result)})
             })
-            showLoader("Loading peripherals...");
+            // showLoader("Loading peripherals...");
             Promise.all(promises)
             .then((results) => {
                 let copy = []
@@ -33,11 +34,11 @@ function DeviceDetails(props){
                 }
                 setReads(copy)
                 displayReads = true;
-                hideLoader();
+                // hideLoader();
             })
             .catch((errors)=>{
                 console.log(errors)
-                hideLoader();
+                // hideLoader();
             })
             // auth.setGlobalLoading(true);
             // for(const peripheral of location.state.peripherals){
@@ -55,6 +56,7 @@ function DeviceDetails(props){
             // auth.setGlobalLoading(false);
             // console.log(auth.getGlobalLoading())
         }
+        }, 3000);
     }, []);
     function renderPeripheralChart(read){
         if(read.peripheral.peripheral.name === "LED"){

@@ -13,7 +13,7 @@ function Logout(props) {
     const auth = useAuthContext();
     const { showLoader, hideLoader } = useLoader();
     useEffect(()=>{
-        showLoader();
+        showLoader("Closing session...");
         auth.logout()
         .then(()=>{
             auth.setCsrftoken(null);

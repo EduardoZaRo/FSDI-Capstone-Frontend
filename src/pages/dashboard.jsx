@@ -21,7 +21,7 @@ function Dashboard(props) {
         }).catch((error)=>{
             hideLoader();
         })
-    },[setOnDelete]);  
+    },[onDelete]);  
     const toggleDelete = () => {setOnDelete(!onDelete);}
     return (
         <div className="page dashboard-page flex-column center">

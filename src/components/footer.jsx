@@ -7,7 +7,7 @@ function Footer() {
 
     return (
         <footer className="footercomponent flex center">
-            <h2 className="blockcode-title">Name<span>_</span>™</h2>
+            <h2 className="blockcode-title">Kodeasy<span>_</span>™</h2>
             <nav className="nav-footer center">
                 <Link to="/">Home</Link>
                 <Link to="/about">About us</Link>

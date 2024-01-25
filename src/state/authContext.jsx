@@ -28,6 +28,7 @@ const authContext = createContext({
     getAllDevices: () => {},
     deleteDeviceById: () => {},
     getDevicePeripheralRead: async () => {},
+    setDevicePeripheralAction: async () => {},
 });
 const useAuthContext = () => useContext(authContext);
 function AuthProvider(props){

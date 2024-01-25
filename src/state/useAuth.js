@@ -116,6 +116,13 @@ function useAuth(){
             {"deviceID": deviceID, "peripheralID": peripheralID}
         )
     }
-    return {user, csrftoken, loading, setCsrftoken, setUser, setGlobalLoading, getGlobalLoading, getCSRFToken, login, logout, isAuthenticated, getAuthenticatedUser, signup, resetPassword, resetPasswordConfirm, changePassword, getNewDeviceCode, getAllMicrocontrollers, getAllPeripherals, saveDevice, getUserDevices, getAllDevices,deleteDeviceById, getDevicePeripheralRead}
+
+    async function setDevicePeripheralAction(deviceID, peripheralID, value){
+        let response = await axios.post("/set-device-action/", 
+            {"deviceID": deviceID, "peripheralID": peripheralID, "value":value }
+        )
+        console.log(response)
+    }
+    return {user, csrftoken, loading, setCsrftoken, setUser, setGlobalLoading, getGlobalLoading, getCSRFToken, login, logout, isAuthenticated, getAuthenticatedUser, signup, resetPassword, resetPasswordConfirm, changePassword, getNewDeviceCode, getAllMicrocontrollers, getAllPeripherals, saveDevice, getUserDevices, getAllDevices,deleteDeviceById, getDevicePeripheralRead,setDevicePeripheralAction}
 }
 export default useAuth;

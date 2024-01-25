@@ -1,5 +1,5 @@
 .led-chart{
-
+    text-align:center;
 }
 
 
@@ -18,6 +18,17 @@
     animation: glowAnimation 3s ease infinite;
     animation-fill-mode: forwards;
     transition: 0.5s;
+}
+.led-chart .led-chart-action-btn{
+    background:var(--primary-color-100);
+    padding: 0.4rem;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    border: 1px solid var(--secondary-color-900);
 }
 
 @keyframes glowAnimation{

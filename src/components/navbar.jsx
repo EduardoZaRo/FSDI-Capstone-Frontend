@@ -29,7 +29,7 @@ function Navbar(props) {
     }
     return (
         <header className="navbarcomponent flex">
-            <h1 className="blockcode-title">Name<span>_</span>™</h1>
+            <h1 className="blockcode-title">Kodeasy<span>_</span>™</h1>
             
             <nav>
                 <input type="checkbox" id="nav-check" onClick={toggleCollapse}/>

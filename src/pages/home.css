@@ -2,12 +2,14 @@
     padding: 1rem;
     text-align:center;
 }
-.home-page .section-text-container h2{
+.home-page .section-text-container h2, 
+.home-page .section-text-container h1{
     font-size: 4rem;
 }
 .home-page .section-text-container p{
     font-size: 1.6rem;
     text-align: justify;
+    text-align:center;
 }
 
 .home-page .full-height{
