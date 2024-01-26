@@ -1,6 +1,6 @@
 import './about.css';
-import aboutMeImg from "../../assets/img/aboutme.jpg";
-import aboutProjectImg from "../../assets/img/aboutproject.jpg";
+import aboutMeImg from "../assets/img/aboutme.jpg";
+import aboutProjectImg from "../assets/img/aboutproject.jpg";
 function About(){
     return(
         <div className="about-page page">

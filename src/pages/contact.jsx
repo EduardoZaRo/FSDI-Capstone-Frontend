@@ -1,7 +1,7 @@
 import './contact.css';
 import { useState, useEffect } from 'react';
-import { useAuthContext } from '../../state/authContext';
-import SuperCaptcha from '../../components/superCaptcha';
+import { useAuthContext } from '../state/authContext';
+import SuperCaptcha from '../components/superCaptcha';
 import { useRef } from 'react';
 function Contact(){
     const [email, setEmail] = useState("");
@@ -85,12 +85,13 @@ function Contact(){
                     </span>
                     <textarea
                         rows="10" 
-                        rezisable={true}
+                        resize={true}
                         autoComplete="on"
                         id="user-message"
                         className=""
                         placeholder="Your message"
                         onChange={event => setMessage(event.target.value)}
+                        style={{flex: "1"}}
                     />
                 </div>
                 <SuperCaptcha ref={childRef}/>
