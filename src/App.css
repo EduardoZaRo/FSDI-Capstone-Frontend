@@ -1,0 +1,20 @@
+.terms-container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.terms-container label, 
+.terms-container button{
+    font-size: 1.5rem;
+}
+.terms-container button{
+    width: fit-content!important;
+    padding:1rem!important;
+}
+.terms-container label{
+    margin: auto 0.4rem;
+}

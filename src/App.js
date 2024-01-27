@@ -35,11 +35,17 @@ function App(props) {
   const [loggedIn, setLoggedIn] = useState(null);
   const [csrftoken, setCSRFToken] = useState(null);
   const [userProfile, setUserProfile] = useState({});
+
+  const [checkboxTermsAgree, setCheckboxTermsAgree] = useState(false);
+  const [termsAgree, setTermsAgree] = useState(false);
+
   const { loading, showLoader, hideLoader } = useLoader();
   const auth = useAuthContext();
   useEffect(()=>{
     console.log("Appjs loading", auth)
-    
+    if(localStorage.getItem("terms") === "accepted"){
+      setTermsAgree(true);
+    }
     showLoader("Checking open session...");
     auth.isAuthenticated().then(()=>{
       auth.getCSRFToken();
@@ -69,10 +75,23 @@ function App(props) {
     );
   };
 
+
+  function checkboxAgreeTermsHandler(){
+    setCheckboxTermsAgree(!checkboxTermsAgree);
+  }
+  function btnAgreeTermsHandler(e){
+    if(document.getElementById("agree").value){
+      setTermsAgree(true);
+      localStorage.setItem("terms", "accepted");
+    }
+  }
   return (
     <LoaderProvider>
       <LoadingScreen/>
-      <div className="App flex-column">
+
+
+
+      {termsAgree ? <div className="App flex-column">
           <BrowserRouter>
             <Navbar loggedIn={loggedIn}/>
             <Routes>
@@ -100,7 +119,17 @@ function App(props) {
             </Routes>
             <Footer/>
           </BrowserRouter>
-      </div>
+      </div> :       
+      
+      <div className="terms-container page" style={{display: termsAgree ? "none" : "flex"}}>
+        <div>
+          <input type="checkbox" id="agree" onChange={checkboxAgreeTermsHandler}/>
+          <label htmlFor="agree">I agree to <a target="_blank" href="https://www.termsandconditionsgenerator.com/download.php?lang=en&token=KYPnLOaYnsspCA7DjPFWpytcTENiNbD5#">terms and conditions</a></label>
+        </div>
+        <button disabled={!checkboxTermsAgree} className="" onClick={btnAgreeTermsHandler} type="submit">
+          Continue
+        </button>
+      </div>}
     </LoaderProvider>
   );
 }

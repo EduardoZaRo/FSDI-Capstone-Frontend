@@ -40,8 +40,8 @@ function Login(props) {
                 auth.getCSRFToken();
                 props.setLoggedIn(false);
                 hideLoader();
-                // return (<Link to="/"/>);
-                navigate("/");
+                return (<Link to="/"/>);
+                // navigate("/");
                 
             }).catch(()=>{
                 hideLoader();

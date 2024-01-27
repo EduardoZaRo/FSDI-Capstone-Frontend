@@ -21,13 +21,13 @@ function ResetPassword(props) {
             setFormError("Please enter a valid mail");
         }
         else{
-            // auth.resetPassword({
-            //     "email": email
-            // }).then((response)=>{
-            //     setVerifySuccess("Check your email for a reset link");
-            // }).catch((error)=>{
-            //     setFormError("Something went wrong: " + error.response.data.email);
-            // })
+            auth.resetPassword({
+                "email": email
+            }).then((response)=>{
+                setVerifySuccess("Check your email for a reset link");
+            }).catch((error)=>{
+                setFormError("Something went wrong: " + error.response.data.email);
+            })
         }
     }
     function setVerifySuccess(alertText){

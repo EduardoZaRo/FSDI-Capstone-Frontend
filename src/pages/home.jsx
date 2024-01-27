@@ -9,7 +9,7 @@ import DeviceImage from "../assets/img/home-4-5.png";
 import { useEffect, useState } from 'react';
 function Home(){
     const auth = useAuthContext();
-    const maxSections = 4;
+    const maxSections = 3;
     console.log("maxSections",maxSections)
     let currentSection = 0;
     // const [currentSection, setCurrentSection] = useState(0);
@@ -57,22 +57,22 @@ function Home(){
                 image.classList.add('slide-in-bottom');
                 text.classList.add('slide-in-top');
             }
-            if(currentSection === 3){
+            if(currentSection === (maxSections-1) && prevSection === (maxSections)){
                 image.classList.add('slide-in-bottom');
                 text.classList.add('slide-in-top');
             }
-            if(currentSection === (maxSections-1) && prevSection === (maxSections)){
-                const image = document.querySelector("#section-"+prevSection+" > img:first-child");
-                const image2 = document.querySelector("#section-"+prevSection+" > img:last-child");
-                image.classList.add('slide-out-right');
-                image2.classList.add('slide-out-left');
-            }
-            else if(currentSection === (maxSections) && prevSection == (maxSections-1)){
-                console.log("xd")
-                const image2 = document.querySelector("#section-"+currentSection+" > img:last-child");
-                image.classList.add('slide-in-right');
-                image2.classList.add('slide-in-left');
-            }
+            // if(currentSection === (maxSections-1) && prevSection === (maxSections)){
+            //     const image = document.querySelector("#section-"+prevSection+" > img:first-child");
+            //     const image2 = document.querySelector("#section-"+prevSection+" > img:last-child");
+            //     image.classList.add('slide-out-right');
+            //     image2.classList.add('slide-out-left');
+            // }
+            // else if(currentSection === (maxSections) && prevSection == (maxSections-1)){
+            //     console.log("xd")
+            //     const image2 = document.querySelector("#section-"+currentSection+" > img:last-child");
+            //     image.classList.add('slide-in-right');
+            //     image2.classList.add('slide-in-left');
+            // }
         }
         window.addEventListener('wheel', sectionNavigation);
         return () =>{ window.removeEventListener('wheel', sectionNavigation); window.scrollTo({top: 0});};
@@ -109,12 +109,7 @@ function Home(){
                     <p>All your circuits in one place</p>
                 </div>
                 <img src={DeviceImage} alt="Device sample" style={{objectFit:"contain"}}/>
-            </div>
-            <div id="section-4" className="flex page-section center full-height">
-                <img src={Image} alt="XD" />
-                <img src={Image} alt="XD" />
-            </div>
-            
+            </div> 
         </div>
     );
 }
