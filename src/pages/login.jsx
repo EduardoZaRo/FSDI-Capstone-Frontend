@@ -38,13 +38,14 @@ function Login(props) {
                 "password": password,
             }).then(()=>{
                 auth.getCSRFToken();
-                props.setLoggedIn(false);
+                props.setLoggedIn(true);
                 hideLoader();
                 return (<Link to="/"/>);
                 // navigate("/");
                 
             }).catch(()=>{
                 hideLoader();
+                // props.setLoggedIn(false);
                 setFormError("Mail or password incorrect, try again");
             })
 

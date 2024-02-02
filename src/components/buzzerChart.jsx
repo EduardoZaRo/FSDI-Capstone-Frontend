@@ -1,24 +1,15 @@
-import "./ledChart.css";
+import "./buzzerChart.css";
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import { useAuthContext } from "../state/authContext";
 import { useNavigate } from 'react-router-dom';
-function LedChart(props) {
+function BuzzerChart(props) {
     const [update, setUpdate] = useState(0);
     const auth = useAuthContext();
     const navigate = useNavigate();
     useEffect(function () {
-        console.log("led data", props)
+        console.log("buzzer data", props)
     },[update]);  
-    function deleteDevice(){
-        console.log("deleting : ", props.data.id)
-        auth.deleteDeviceById(props.data.id).
-        then((response)=>{
-            props.toggleDelete()
-        }).catch(()=>{
-
-        })
-    }
     function setAction(){
         try{
             console.log(props.data.value)
@@ -29,15 +20,16 @@ function LedChart(props) {
         catch(e){console.log(e)}
     }
     return (
-        <div className="led-chart chart flex-column">
+        <div className="buzzer-chart chart flex-column">
             <div key={props.data.updated_at}>  
-                <h1>{props.data.peripheral.id} | This is a {props.data.peripheral.peripheral.name}</h1>
+                <h1>This is a {props.data.peripheral.peripheral.name}</h1>
                 <p>State: {props.data.value} - Update date: {props.data.updated_at}</p>
-                <div className={"led-diagram " + (props.data.value === '1' ? " on " : " off ") }></div>
-                <button onClick={setAction} className="led-chart-action-btn">Toggle</button>
+                <i className={"bi bi-volume-" + (props.data.value === '1' ? "up" : "mute") }></i>
+                <button onClick={setAction} className="buzzer-chart-action-btn">Toggle</button>
             </div>
         </div>
     );
 }
 
-export default LedChart;
+export default BuzzerChart;
+

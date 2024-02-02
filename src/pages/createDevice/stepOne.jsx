@@ -8,6 +8,8 @@ import { useAuthContext } from "../../state/authContext";
 import SelectElementSection from "./components/selectElementSection";
 import ShowGeneratedCode from "./components/showGeneratedCode";
 import { useLocation } from "react-router-dom";
+import { useLoader } from "../../state/loaderContext";
+
 function StepOne(props) {
   const [deviceName, setDeviceName] = useState("");
   const [microcontrollers, setMicrocontrollers] = useState([]);
@@ -15,6 +17,8 @@ function StepOne(props) {
   const [selectedPeripherals, setSelectedPeripherals] = useState([]);
   const auth = useAuthContext();
   const location = useLocation();
+  const { loading, showLoader, hideLoader } = useLoader();
+
   useEffect(
     function () {
       loadMicrocontrollers();
@@ -29,9 +33,20 @@ function StepOne(props) {
   );
 
   function loadMicrocontrollers(){
-    const service = new DataService();
-    let data = service.getMicrocontrollers();
-    setMicrocontrollers(data);
+    // const service = new DataService();
+    // let data = service.getMicrocontrollers();
+    // setMicrocontrollers(data);
+    showLoader("Loading microcontrollers");
+    auth.getAllMicrocontrollers().
+    then((response)=>{
+      console.log("loaded micros",response)
+      setMicrocontrollers(response.data);
+      hideLoader();
+    }).
+    catch((error)=>{
+      console.log(error); 
+      hideLoader();
+    })
   }
 
   function addSelectedMicrocontroller(elementID){
@@ -46,7 +61,7 @@ function StepOne(props) {
   function searchElementByID(elements, elementID){
     let elementToAdd;
     elements.forEach((element)=>{
-      if(element._id == elementID){
+      if(element.id == elementID){
         elementToAdd = element;
         return;
       }

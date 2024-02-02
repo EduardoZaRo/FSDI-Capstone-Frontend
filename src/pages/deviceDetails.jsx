@@ -5,7 +5,7 @@ import { useAuthContext } from "../state/authContext";
 import { useLoader } from "../state/loaderContext";
 import LedChart from '../components/ledChart';
 import PotentiometerChart from '../components/potentiometerChart';
-
+import BuzzerChart from '../components/buzzerChart';
 function DeviceDetails(props){
     const location = useLocation();
     const auth = useAuthContext();
@@ -15,7 +15,7 @@ function DeviceDetails(props){
     var displayReads = false;
 
     useEffect(function () {
-        setInterval(() =>  {
+        const fetchRefresh = setInterval(() =>  {
         if(location.state){
             console.log("device details", location.state)
             let promises = location.state.peripherals.map(async (p) => {
@@ -57,6 +57,7 @@ function DeviceDetails(props){
             // console.log(auth.getGlobalLoading())
         }
         }, 3000);
+        return () => clearInterval(fetchRefresh);
     }, []);
     function renderPeripheralChart(read){
         if(read.peripheral.peripheral.name === "LED"){
@@ -64,6 +65,9 @@ function DeviceDetails(props){
         }
         if(read.peripheral.peripheral.name === "POTENTIOMETER"){
             return <PotentiometerChart key={read.updated_at} data={read}/>
+        }
+        if(read.peripheral.peripheral.name === "BUZZER"){
+            return <BuzzerChart key={read.updated_at} data={read}/>
         }
     }
     return(

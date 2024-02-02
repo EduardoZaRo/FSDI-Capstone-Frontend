@@ -19,7 +19,7 @@ function SelectElementSection(props) {
                 props.selectedElements.length !== 0
                 ?
                 props.selectedElements.map((se, index)=>(
-                    <SelectedElement key={se.name+se._id+index} id={"selected-" + se._id + "-" + index} data={se} removeElectronicComponent={props.removeElement} selectedIndex={index}/>
+                    <SelectedElement key={se.name+se.id+index} id={"selected-" + se.id + "-" + index} data={se} removeElectronicComponent={props.removeElement} selectedIndex={index}/>
                 ))
 
                 : 
@@ -45,16 +45,16 @@ function SelectElementSection(props) {
 
                     {
                     props.availableElements.map((e) => (
-                        <div key={e._id+e.name} className="electronic-component flex justify-between items-center h-fit-content py-2">
+                        <div key={e.id+e.name} className="electronic-component flex justify-between items-center h-fit-content py-2">
                             <div className="flex gap-2">
                                 <a href={e.infoLink} target="_blank" className="flex items-center">
                                     <i className="bi bi-info-circle"></i>
                                 </a>
 
-                                <p className="m-auto" key={e._id}>{e.name}{e.title}</p>
+                                <p className="m-auto" key={e.id}>{e.name}{e.title}</p>
                             </div>
                             
-                            <button className="center small-circle-add-btn" key={e._id * 100} onClick={() => props.addSelectedElement(e._id)}>+</button>
+                            <button className="center small-circle-add-btn" key={e.id * 100} onClick={() => props.addSelectedElement(e.id)}>+</button>
                         </div>
                         
                     ))}

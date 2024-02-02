@@ -1,0 +1,67 @@
+.buzzer-chart{
+  text-align:center; 
+}
+
+
+.buzzer-chart .buzzer-diagram{
+  width: 50px;
+  height: 50px;
+  background-color: rgba(255, 0, 0, 0.4);
+  margin: auto;
+  border-radius: 50%;
+  border: 2px solid rgb(130, 2, 2);
+  transition: 0.5s;
+}
+.buzzer-chart .buzzer-diagram.on{
+  background-color: rgba(255, 0, 0, 1);
+  box-shadow: 0 0 25px red;
+  animation: glowAnimation 3s ease infinite;
+  animation-fill-mode: forwards;
+  transition: 0.5s;
+}
+.buzzer-chart .buzzer-chart-action-btn{
+  background:var(--primary-color-100);
+  padding: 0.4rem;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  border-radius: 10px;
+  font-weight: bold;
+  border: 1px solid var(--secondary-color-900);
+}
+.buzzer-chart .bi-volume-up,
+.buzzer-chart .bi-volume-mute
+{
+  font-size: 5rem;
+}
+
+.buzzer-chart .bi-volume-up::before{
+  animation: myShake 1.25s ease infinite;
+  animation-fill-mode: forwards;
+  /* transition: 0.5s; */
+}
+
+@keyframes myShake{
+  0%{
+      transform: rotate(10deg);
+  }
+  50%{
+    transform: rotate(-10deg);
+  }
+  100%{
+    transform: rotate(10deg);
+  }
+}
+
+@keyframes glowAnimation{
+  0%{
+      box-shadow: 0 0 25px red;
+  }
+  50%{
+      box-shadow: 0 0 15px red;
+  }
+  100%{
+      box-shadow: 0 0 25px red;
+  }
+}

@@ -99,7 +99,7 @@ function App(props) {
               <Route path="/about" element={<About/>}/>
               <Route path="/contact" element={<Contact/>}/>
               <Route path="/" element={<Home/>}/>
-              <Route path="/login" element={<Login/>}/>
+              <Route path="/login" element={<Login setLoggedIn={setLoggedIn}/>}/>
               <Route path="/register" element={<Register/>}/>
               <Route path="/reset-password" element={<ResetPassword/>}/>
               <Route path="/reset-password/confirm" element={<ResetPasswordConfirm/>}/>

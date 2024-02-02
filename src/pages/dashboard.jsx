@@ -27,8 +27,8 @@ function Dashboard(props) {
         <div className="page dashboard-page flex-column center">
             {   
                 loading === false ?
-                devices.map(d =>  <DeviceCard key={d.id} data={d} toggleDelete={toggleDelete}/>)
-                : <h1>No devices found, try creating one!</h1>
+                    devices.length ? devices.map(d =>  <DeviceCard key={d.id} data={d} toggleDelete={toggleDelete}/>) : <h1>No devices found :(</h1>
+                : <h1>Loading...</h1>
             }
         </div>
     );

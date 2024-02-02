@@ -77,6 +77,9 @@
 .device-card .buttons-container .update-btn{
     background-color: rgb(228, 228, 29);
 }
+.device-card .buttons-container .code-btn{
+    background-color: rgb(223, 223, 252);
+}
 .device-card .buttons-container .delete-btn{
     background-color: rgb(227, 44, 44);
 }

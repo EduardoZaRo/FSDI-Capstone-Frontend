@@ -19,7 +19,11 @@ function ShowGeneratedCode(props) {
     if(props.selectedMicrocontroller.length == 0){
       return;
     }
-    console.log(props)
+    console.log({
+      'name': props.deviceName,
+      'microcontroller': props.selectedMicrocontroller[0],
+      'peripherals': props.selectedPeripherals
+    })
     showLoader("Generatig code ...");
     auth.getNewDeviceCode({
         'name': props.deviceName,

@@ -85,7 +85,7 @@ function Home(){
             <div id="section-0" className="flex center page-section full-height">
                 <img src={CircuitImage} alt="Circuit" style={{objectFit:"contain"}}/>
                 <div className="section-text-container center flex-column">
-                    <h2>Welcome to <h1 className="blockcode-title">Kodeasy<span>_</span>™</h1></h2>
+                    <h2>Welcome to</h2> <h1 className="blockcode-title">Kodeasy<span>_</span>™</h1>
                     <p>A new platform where creating code is easier than ever</p>
                 </div>
             </div>

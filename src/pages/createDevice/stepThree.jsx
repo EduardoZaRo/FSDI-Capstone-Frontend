@@ -35,7 +35,8 @@ function StepThree(props) {
         'peripherals': selectedPeripherals
     }).then((response)=>{
         hideLoader();
-        navigate('/dashboard');
+        return (<Link to="/dashboard"/>);
+        // navigate('/dashboard');
         
     }).catch((error)=>{
         console.log(error)

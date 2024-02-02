@@ -98,7 +98,7 @@ function useAuth(){
         return axios.get("/get-peripherals/")
     }
     function getAllDevices(){
-        return axios.post("/get-peripherals/")
+        return axios.post("/get-devices/")
     }
     function saveDevice(data){
         return axios.post("/save-device/", data)

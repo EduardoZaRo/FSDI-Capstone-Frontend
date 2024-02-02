@@ -6,10 +6,11 @@ import { useNavigate } from 'react-router-dom';
 function PotentiometerChart(props) {
     const auth = useAuthContext();
     const navigate = useNavigate();
+    const [update, setUpdate] = useState(0);
     useEffect(function () {
         let value = props.data.value * 180 / 3.3;
         document.querySelector('.potentiometer-chart .gauge-chart .gauge-value').style.transform= 'rotate('+value+'deg)'; 
-    },[]);  
+    },[props.data.value]);  
     return (
         <div className="potentiometer-chart chart flex-column">
             <div key={props.data.updated_at}>  

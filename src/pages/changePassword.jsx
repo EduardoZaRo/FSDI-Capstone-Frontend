@@ -91,7 +91,7 @@ function ChangePassword(props) {
 
                 <div className={"form-alert " + formAlert.color} display={formAlert ? "show" : "none"}>{formAlert.text}</div>
                 <button type="submit" className="" onClick={verifyLogin}>
-                    Change password <i class="bi bi-arrow-clockwise"></i>
+                    Change password <i className="bi bi-arrow-clockwise"></i>
                 </button>
             </div>
         </div>

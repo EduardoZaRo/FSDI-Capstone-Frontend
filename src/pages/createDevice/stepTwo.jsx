@@ -8,6 +8,8 @@ import { useAuthContext } from "../../state/authContext";
 import SelectElementSection from "./components/selectElementSection";
 import ShowGeneratedCode from "./components/showGeneratedCode";
 import { useLocation } from "react-router-dom";
+import { useLoader } from "../../state/loaderContext";
+
 function StepTwo(props) {
   const [deviceName, setDeviceName] = useState("");
   const [peripherals, setPeripherals] = useState([]);
@@ -15,6 +17,8 @@ function StepTwo(props) {
 
   const auth = useAuthContext();
   const location = useLocation();
+  const { loading, showLoader, hideLoader } = useLoader();
+
   const [selectedMicrocontroller, setSelectedMicrocontroller] = useState(location.state.microcontroller);
   useEffect(function () {
     loadPeripherals();
@@ -26,9 +30,20 @@ function StepTwo(props) {
   }, []);
 
   function loadPeripherals() {
-    const service = new DataService();
-    let data = service.getElements();
-    setPeripherals(data);
+    // const service = new DataService();
+    // let data = service.getElements();
+    // setPeripherals(data);
+    showLoader("Loading peripherals");
+    auth.getAllPeripherals().
+    then((response)=>{
+      console.log(response)
+      setPeripherals(response.data);
+      hideLoader();
+    }).
+    catch((error)=>{
+      console.log(error);
+      hideLoader();
+    })
   }
   function addPeripheral(elementID) {
     let copy = [...selectedPeripherals];
@@ -52,7 +67,7 @@ function StepTwo(props) {
   function searchElementByID(elements, elementID) {
     let elementToAdd;
     elements.forEach((element) => {
-      if (element._id == elementID) {
+      if (element.id == elementID) {
         elementToAdd = element;
         return;
       }
