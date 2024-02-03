@@ -6,11 +6,13 @@ import Cookies from 'js-cookie';
 import StoreContext from "../state/authContext";
 import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
 import { useAuthContext } from "../state/authContext";
+import { useLoader } from "../state/loaderContext";
+
 function ResetPassword(props) {
     const [email, setEmail] = useState("");
     const [formAlert, setFormAlert] = useState({"text":"", "color":""});
     const auth = useAuthContext();
-
+    const { showLoader, hideLoader } = useLoader();
     useEffect(function () {
     }, []);
     function submitForm(){
@@ -21,11 +23,14 @@ function ResetPassword(props) {
             setFormError("Please enter a valid mail");
         }
         else{
+            showLoader("Verifying form...");
             auth.resetPassword({
                 "email": email
             }).then((response)=>{
+                hideLoader();
                 setVerifySuccess("Check your email for a reset link");
             }).catch((error)=>{
+                hideLoader();
                 setFormError("Something went wrong: " + error.response.data.email);
             })
         }
