@@ -56,7 +56,7 @@ function DeviceDetails(props){
             // auth.setGlobalLoading(false);
             // console.log(auth.getGlobalLoading())
         }
-        }, 3000);
+        }, 500);
         return () => clearInterval(fetchRefresh);
     }, []);
     function renderPeripheralChart(read){
