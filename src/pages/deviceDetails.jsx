@@ -17,7 +17,7 @@ function DeviceDetails(props){
     useEffect(function () {
         const fetchRefresh = setInterval(() =>  {
         if(location.state){
-            console.log("device details", location.state)
+            // console.log("device details", location.state)
             let promises = location.state.peripherals.map(async (p) => {
                 let result = await auth.getDevicePeripheralRead(location.state.id, p.id)
                 return new Promise((res, rej) => {res(result)})
@@ -29,7 +29,7 @@ function DeviceDetails(props){
                 for(let result of results){
                     
                     copy.push(result.data)
-                    console.log(copy, displayReads)
+                    // console.log(copy, displayReads)
                     
                 }
                 setReads(copy)
@@ -40,23 +40,8 @@ function DeviceDetails(props){
                 console.log(errors)
                 // hideLoader();
             })
-            // auth.setGlobalLoading(true);
-            // for(const peripheral of location.state.peripherals){
-            //     auth.getDevicePeripheralRead(location.state.id, peripheral.id)
-            //     .then((response)=>{
-            //         let copy = [...reads]
-            //         copy.push(response.data)
-            //         console.log(copy, auth.getGlobalLoading())
-            //         setReads(copy)
-            //     })
-            //     .catch((error)=>{
-            //         console.log(error)
-            //     })
-            // }
-            // auth.setGlobalLoading(false);
-            // console.log(auth.getGlobalLoading())
         }
-        }, 500);
+        }, 1000);
         return () => clearInterval(fetchRefresh);
     }, []);
     function renderPeripheralChart(read){
