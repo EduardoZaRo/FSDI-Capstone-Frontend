@@ -63,7 +63,7 @@ function DeviceCard(props) {
 
             </Link>
             <div className="buttons-container flex">
-                <button className="update-btn center">
+                <button className="update-btn center" onClick={()=>alert("Not available :(")}>
                     <i className="bi bi-pencil-square"></i>
                 </button>
                 <button className="code-btn center" onClick={generateCode}>

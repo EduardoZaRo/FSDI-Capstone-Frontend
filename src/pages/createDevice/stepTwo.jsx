@@ -110,8 +110,8 @@ function StepTwo(props) {
         />
 
         <div className="stepper-navigation-btns flex">
-          <button className="generate-code-button flex bg-secondary w-1/6 rounded  m-auto text-white text-center justify-center m-auto disabled:opacity-50 py-2"><Link to="/step-one" state={{name: deviceName, microcontroller: selectedMicrocontroller, peripherals: selectedPeripherals}} className="text-white">Prev</Link></button>
-          <button className="generate-code-button flex bg-secondary w-1/6 rounded  m-auto text-white text-center justify-center m-auto disabled:opacity-50 py-2" disabled={(selectedPeripherals.length === 0 || deviceName === "") ? true : false }> <Link to="/step-three" state={{name: deviceName, microcontroller: selectedMicrocontroller, peripherals: selectedPeripherals}}className="text-white">Next</Link> </button>
+          <button className="generate-code-button flex bg-secondary w-1/6 rounded  m-auto text-white text-center justify-center m-auto disabled:opacity-50 py-2"><Link to="/step-one" state={{name: deviceName, microcontroller: selectedMicrocontroller, peripherals: selectedPeripherals}} className={"button-link text-white " + ((selectedMicrocontroller.length === 0 || deviceName === "") ? " disabled-link" : "")}>Prev</Link></button>
+          <button className="generate-code-button flex bg-secondary w-1/6 rounded  m-auto text-white text-center justify-center m-auto disabled:opacity-50 py-2" disabled={(selectedPeripherals.length === 0 || deviceName === "") ? true : false }> <Link to="/step-three" state={{name: deviceName, microcontroller: selectedMicrocontroller, peripherals: selectedPeripherals}} className={"button-link text-white " + ((selectedPeripherals.length === 0 || deviceName === "") ? " disabled-link" : "")}>Next</Link> </button>
         </div>
       </div>
     </div>

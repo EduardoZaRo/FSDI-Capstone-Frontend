@@ -51,8 +51,8 @@ function StepThree(props) {
         <ShowGeneratedCode deviceName={deviceName} selectedMicrocontroller={selectedMicrocontroller} selectedPeripherals={selectedPeripherals}/>
 
         <div className="stepper-navigation-btns flex">
-          <button className="generate-code-button flex bg-secondary w-1/6 rounded  m-auto text-white text-center justify-center m-auto disabled:opacity-50 py-2"><Link to="/step-two" state={{name: deviceName, microcontroller: selectedMicrocontroller, peripherals: selectedPeripherals}}className="text-white">Prev</Link></button>
-          <button className="generate-code-button flex bg-secondary w-1/6 rounded  m-auto text-white text-center justify-center m-auto disabled:opacity-50 py-2"> <Link to="/dashboard" state={{name: deviceName, microcontroller: selectedMicrocontroller, peripherals: selectedPeripherals}} className="text-white" onClick={saveDevice}>Finish</Link> </button>
+          <button className="generate-code-button flex bg-secondary w-1/6 rounded  m-auto text-white text-center justify-center m-auto disabled:opacity-50 py-2"><Link to="/step-two" state={{name: deviceName, microcontroller: selectedMicrocontroller, peripherals: selectedPeripherals}}className={"button-link text-white "}>Prev</Link></button>
+          <button className="generate-code-button flex bg-secondary w-1/6 rounded  m-auto text-white text-center justify-center m-auto disabled:opacity-50 py-2"> <Link to="/dashboard" state={{name: deviceName, microcontroller: selectedMicrocontroller, peripherals: selectedPeripherals}} className={"button-link text-white "} onClick={saveDevice}>Finish</Link> </button>
         </div>
       </div>
     </div>

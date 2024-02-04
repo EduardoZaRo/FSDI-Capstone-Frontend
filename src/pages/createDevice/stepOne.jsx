@@ -74,7 +74,7 @@ function StepOne(props) {
     <div className="page createdevice-page flex-column center">
       <div className="step-container">
         <AddDeviceStepper currentStep={0}/>
-        <div className="flex input-group">
+        <div className="flex input-group" style={{overflow: "hidden"}}>
             <span className="center">
               <i className="bi bi-fonts"></i>
             </span>
@@ -95,7 +95,12 @@ function StepOne(props) {
 
          <div className="stepper-navigation-btns flex">
           <button className="generate-code-button flex bg-secondary w-1/6 rounded  m-auto text-white text-center justify-center m-auto disabled:opacity-50 py-2" disabled={true}>Prev</button>
-          <button className="generate-code-button flex bg-secondary w-1/6 rounded  m-auto text-white text-center justify-center m-auto disabled:opacity-50 py-2" disabled={(selectedMicrocontroller.length === 0 || deviceName === "") ? true : false }> <Link to="/step-two" state={{name: deviceName, microcontroller: selectedMicrocontroller, peripherals: selectedPeripherals}}className="text-white">Next</Link> </button>
+          <button className="generate-code-button flex bg-secondary w-1/6 rounded  m-auto text-white text-center justify-center m-auto disabled:opacity-50 py-2" disabled={(selectedMicrocontroller.length === 0 || deviceName === "") ? true : false }> 
+            <Link to="/step-two" state={{name: deviceName, microcontroller: selectedMicrocontroller, peripherals: selectedPeripherals}} className={"button-link text-white " + ((selectedMicrocontroller.length === 0 || deviceName === "") ? " disabled-link" : "")}>Next</Link> 
+          </button>
+
+
+          
         </div>
       </div>
     </div>

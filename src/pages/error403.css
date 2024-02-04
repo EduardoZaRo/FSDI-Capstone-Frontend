@@ -1,0 +1,12 @@
+.error-403-page img{
+    width: 80%;
+    max-width: 500px;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.error-403-page .login-redirect{
+    text-decoration: none;
+    /* color: black; */
+    font-size: 1.5rem;
+}

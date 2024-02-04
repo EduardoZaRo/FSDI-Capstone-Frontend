@@ -7,11 +7,14 @@ import StoreContext from "../state/authContext";
 import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom";
 import Error404 from "./error404";
 import { useAuthContext } from "../state/authContext";
+import { useLoader } from "../state/loaderContext";
+
 function ResetPasswordConfirm(props) {
     const [password, setPassword] = useState("");
     const [token, setToken] = useState("");
     const [formAlert, setFormAlert] = useState({"text":"", "color":""});
     const auth = useAuthContext();
+    const { showLoader, hideLoader } = useLoader();
     const queryParameters = new URLSearchParams(window.location.search);
     const reset_token = queryParameters.get("token");
     useEffect(function () { }, []);
@@ -24,13 +27,17 @@ function ResetPasswordConfirm(props) {
             setFormError("You password must be at least 8 characters long");
         }
         else{
+            showLoader("Verifying form...");
             auth.resetPasswordConfirm({
                 "password": password,
                 "token": reset_token,
             }).then((response)=>{
+                hideLoader();
                 setVerifySuccess("Password reset succesful")
                 console.log(response)
+                return (<Link to="/login"/>);
             }).catch((error)=>{
+                hideLoader();
                 setFormError("Something went wrong: " + error.response.data.password)
             })
         }

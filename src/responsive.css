@@ -76,6 +76,20 @@
         scrollbar-width: none;  /* Firefox */
     }
     
+
+
+    .buttons-container{
+        flex-direction: column;
+        width: 100%;
+        gap: 1rem;
+    }
+    .update-btn, .code-btn, .delete-btn {
+        min-width: 100%;
+        text-align: center;
+        justify-content:center;
+    }
+
+
     .footercomponent{
         flex-direction: column;
     }

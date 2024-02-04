@@ -20,6 +20,7 @@ import ResetPasswordConfirm from "./pages/resetPasswordConfirm";
 import ChangePassword from "./pages/changePassword";
 import LoadingScreen from "./components/loadingScreen";
 import Error404 from "./pages/error404";
+import Error403 from "./pages/error403";
 import About from './pages/about';
 import Contact from './pages/contact';
 import './responsive.css';
@@ -60,15 +61,15 @@ function App(props) {
   const PrivateRoute = ({ children }) => {
     console.log("private route", auth.user, loggedIn,children)
     // if(auth.loading === true ) return <LoadingScreen/>
-    if (!loggedIn) {
-      // Redirige a la página de inicio de sesión si el usuario no está autenticado
-      // Puedes personalizar la ruta de redirección según tus necesidades.
-      return <Navigate to="/login" state={{isRedirected: true}}/>
-    }
+    // if (!loggedIn) {
+    //   // Redirige a la página de inicio de sesión si el usuario no está autenticado
+    //   // Puedes personalizar la ruta de redirección según tus necesidades.
+    //   return <Navigate to="/login" state={{isRedirected: true}}/>
+    // }
     return (
       <>  
       {/* {auth.getGlobalLoading() === true && <LoadingScreen/>}  */}
-      {loggedIn === true && loading === false ? children : <Navigate to="/login" state={{isRedirected: true}}/>}
+      {loggedIn === true && loading === false ? children : <Error403/>}
       </>
         
         // loggedIn === true ? children : <Navigate to="/login" state={{isRedirected: true}}/>
@@ -104,6 +105,7 @@ function App(props) {
               <Route path="/reset-password" element={<ResetPassword/>}/>
               <Route path="/reset-password/confirm" element={<ResetPasswordConfirm/>}/>
               <Route path="/error-404" element={<Error404/>}/>
+              <Route path="/error-403" element={<Error403/>}/>
               <Route path="/*" element={<Error404/>}/>
 
               {/* Private routes (need auth) */}

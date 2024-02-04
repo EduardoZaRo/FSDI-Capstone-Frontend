@@ -53,6 +53,14 @@
     gap: 2rem;
     flex-direction: column;
 }
+.button-link{
+    text-decoration: none!important;
+    color: white!important;
+}
+.disabled-link{
+    pointer-events: none;
+    cursor: default;
+}
 @keyframes displayPulse{
     0%{
         transform: scale(1.02);
